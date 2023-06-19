@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useMessageStore } from '@/stores'
 import { getTimeState } from '@LT/utils'
@@ -8,11 +9,22 @@ import { getTableList } from '@/api/page1'
 const store = useMessageStore()
 const { message } = storeToRefs(store)
 
-const [err, res] = await getTableList()
-console.log('mock接口测试：', res)
+const iptData = ref('我是被复制的内容 🍒 🍉 🍊')
+
+// eslint-disable-next-line
+const getList = async () => {
+  const [err, res] = await getTableList()
+  console.log('mock接口测试：', res)
+}
+getList()
 </script>
 
 <template>
+  <button>Button</button>
+
+  <el-input class="!w-200px my-10px" v-model="iptData"></el-input>
+  <el-button v-copy="iptData">复制</el-button>
+
   <h1>{{ getTimeState() }}</h1>
 
   <pButton>公共按钮组件</pButton>
@@ -23,12 +35,6 @@ console.log('mock接口测试：', res)
 </template>
 
 <style lang="less" scoped>
-ul {
-  li {
-    line-height: 2;
-  }
-}
-
 blockquote {
   color: var(--c-black);
   background-color: var(--c-gray);
@@ -38,27 +44,5 @@ blockquote {
   p {
     margin: 0;
   }
-}
-
-hr {
-  width: 60%;
-  border-color: var(--c-border);
-  margin: var(--w-space) auto;
-  opacity: 0.2;
-}
-
-a {
-  color: #42b983;
-}
-
-p {
-  margin: 0;
-}
-
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
 }
 </style>

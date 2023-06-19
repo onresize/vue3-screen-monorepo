@@ -16,7 +16,7 @@
     "check-keyword": "bash .husky/check-keyword.sh"
   },
   "author": "",
-  "license": "",
+  "license": "MIT",
   "workspaces": [
     "webPackages",
     "components",

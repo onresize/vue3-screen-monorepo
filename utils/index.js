@@ -1,2 +1,2 @@
-export * from "./modules/funcTools";
-export * from "./modules/awaitTo";
+export * from "./tools/funcTools";
+export * from "./tools/awaitTo";

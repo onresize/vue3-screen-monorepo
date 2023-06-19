@@ -8,7 +8,16 @@ import '@/styles/var.less'
 import '@/styles/mixin.less'
 import '@/styles/global.less'
 
+import 'virtual:windi.css'
+
+import ElementPlus from 'element-plus'
+import 'element-plus/dist/index.css'
+
+// 引入自定义指令
+import directives from './directives'
+
 createApp(App)
+  .use(directives, createApp(App))
   .use(createPinia()) // 启用 Pinia
   .use(router)
   .mount('#app')

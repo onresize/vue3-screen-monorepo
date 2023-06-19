@@ -10,6 +10,9 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { envDir, sourceDir, manualChunks } from './scripts/build'
 import pkg from './package.json'
 
+// css原子化：https://cn.windicss.org/guide/
+import WindiCSS from 'vite-plugin-windicss'
+
 // 集成mock服务
 import { viteMockServe } from 'vite-plugin-mock'
 
@@ -107,6 +110,7 @@ export default defineConfig(({ mode }) => {
        * 支持 `.vue` 文件的解析
        */
       vue(),
+      WindiCSS(),
       VueSetupExtend(), // * name 可以写在 script 标签上
       // 本地和后端调试注释下面配置、或更改配置
       viteMockServe({
@@ -123,7 +127,7 @@ export default defineConfig(({ mode }) => {
         resolvers: [ElementPlusResolver()],
       }),
       /**
-       * 自动导入组件，不用每次都 import
+       * 自动导入ELemPlus组件，不用每次都 import
        * @see https://github.com/antfu/unplugin-vue-components#configuration
        */
       components({

@@ -1,18 +1,22 @@
 <script setup></script>
 
 <template>
-  <button>
+  <div>
     <slot> </slot>
-  </button>
+  </div>
 </template>
 
 <style scoped>
-button {
+div {
   border: 2px solid red;
+  padding: 10px;
   color: #000;
+  cursor: pointer;
+  user-select: none;
 }
 
-button:active {
+div:active {
   border: 2px solid red;
+  background: gray;
 }
 </style>
