@@ -1,0 +1,42 @@
+{
+  "name": "vue3-screen-monorepo",
+  "version": "1.0.0",
+  "description": "monorepo策略构建模板",
+  "main": "index.js",
+  "scripts": {
+    "dev": "pnpm -F vue3-screen-template dev",
+    "preview": "pnpm -F vue3-screen-template preview",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "commit": "git add . && git cz && git push",
+    "release": "standard-version",
+    "prepare": "husky install",
+    "format-code": "bash .husky/format-code.sh",
+    "check-conflict": "bash .husky/check-conflict.sh",
+    "check-keyword": "bash .husky/check-keyword.sh"
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": [
+    "webPackages",
+    "components",
+    "utils"
+  ],
+  "devDependencies": {
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "yorkie": "^2.0.0"
+  },
+  "gitHooks": {
+    "pre-commit": "yorkie pre-commit"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,vue,tsx}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">= 16.x.x"
+  }
+}

@@ -1,0 +1,8 @@
+# https://pnpm.io/zh/pnpm-workspace_yaml
+packages:
+  # 所有前端项目存储在该文件夹下
+  - 'webPackages/*'
+  # 公共的、所有项目使用的公共的组件
+  - 'components/**'
+  # 公共的函数工具方法
+  - 'utils/**'
