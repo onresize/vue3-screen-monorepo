@@ -1,7 +1,5 @@
-import type { Directive, DirectiveBinding } from 'vue'
-
-const permission: Directive = {
-  mounted(el: HTMLElement, bind: DirectiveBinding) {
+const permission = {
+  mounted(el, bind) {
     // el:绑定该指令标签
     // bind:对象格式 当前绑定指令标签上的数据情况
     // 获取按钮上的value值，就是用户当前要使用的权限和请求的路由地址

@@ -1,9 +1,8 @@
-import type { Directive, DirectiveBinding } from 'vue'
-import loadingGif from '@/assets/lazyPic/loading1.gif'
+// import loadingGif from '@/assets/lazyPic/loading1.gif'
 
 // 图片懒加载
-const lazy: Directive = {
-  mounted(el: HTMLElement, binding: DirectiveBinding) {
+const lazy = {
+  mounted(el, binding) {
     // console.log('图片懒加载指令:',el)
     const imgSrc = el.src
     el.style.width = '0px'

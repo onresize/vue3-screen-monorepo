@@ -9,14 +9,9 @@
 - 使用 husky、lint-staged、commitlint、git-hooks 规范提交信息（提交预检测debugger、代码冲突、暂存区代码统一格式）
 
 ### 项目文件目录说明
-- components: 公共的、所有项目使用的公共的组件
+- components: 公共的、可单独抽离的(不需要依赖状态的)、所有项目使用的公共的组件
 - utils: 公共的函数工具方法
 - webPackages: 所有前端项目存储在该文件夹下
-
-```js
-进入components、utils、webPackages这三个文件夹下安装对应依赖
-进入webPackages文件夹下对应的前端项目、pnpm dev运行项目
-```
 
 ```js
 pnpm i

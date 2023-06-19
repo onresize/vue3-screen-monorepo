@@ -12,10 +12,6 @@
 */
 
 // vue-drag-resize拖拽库： https://github.com/kirillmurashov/vue-drag-resize
-import type { Directive } from 'vue'
-interface ElType extends HTMLElement {
-  parentNode: any
-}
 import { getCurrentInstance } from 'vue'
 // 获取原有属性 ie dom元素.currentStyle 火狐谷歌 window.getComputedStyle(dom元素, null);
 const getStyle = (function () {
@@ -26,8 +22,8 @@ const getStyle = (function () {
   }
 })()
 
-const draggable: Directive = {
-  mounted: function (el: ElType) {
+const draggable = {
+  mounted: function (el) {
     console.log(el.children)
     // el.style.cursor = "move";
     el.children[0].style.cursor = 'move'

@@ -11,6 +11,13 @@ const { message } = storeToRefs(store)
 
 const iptData = ref('我是被复制的内容 🍒 🍉 🍊')
 
+ElNotification({
+  title: getTimeState(),
+  message: '欢迎登录 vue3-screen-template',
+  type: 'success',
+  duration: 3000,
+})
+
 // eslint-disable-next-line
 const getList = async () => {
   const [err, res] = await getTableList()
@@ -20,12 +27,8 @@ getList()
 </script>
 
 <template>
-  <button>Button</button>
-
   <el-input class="!w-200px my-10px" v-model="iptData"></el-input>
   <el-button v-copy="iptData">复制</el-button>
-
-  <h1>{{ getTimeState() }}</h1>
 
   <pButton>公共按钮组件</pButton>
 

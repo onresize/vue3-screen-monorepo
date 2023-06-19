@@ -1,4 +1,3 @@
-import { App } from 'vue'
 import auth from './modules/auth'
 import copy from './modules/copy'
 import waterMarker from './modules/waterMarker'
@@ -10,7 +9,7 @@ import permission from './modules/permission'
 import lazy from './modules/lazy'
 import sound from './modules/sound'
 
-const directivesList: any = {
+const directivesList = {
   // Custom directives
   auth,
   copy,
@@ -25,7 +24,7 @@ const directivesList: any = {
 }
 
 const directives = {
-  install: function (app: App<Element>) {
+  install: function (app) {
     Object.keys(directivesList).forEach((key) => {
       // 注册所有自定义指令
       app.directive(key, directivesList[key])

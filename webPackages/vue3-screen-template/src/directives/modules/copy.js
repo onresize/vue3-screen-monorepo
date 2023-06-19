@@ -3,28 +3,23 @@
  * 复制某个值至剪贴板
  * 接收参数：string类型/Ref<string>类型/Reactive<string>类型
  */
-import type { Directive, DirectiveBinding } from 'vue'
-import { ElMessage } from 'element-plus'
-interface ElType extends HTMLElement {
-  copyData: string | number
-  __handleClick__: any
-}
-const copy: Directive = {
-  mounted(el: ElType, binding: DirectiveBinding) {
+
+const copy = {
+  mounted(el, binding) {
     el.copyData = binding.value
     el.addEventListener('click', handleClick)
   },
-  updated(el: ElType, binding: DirectiveBinding) {
+  updated(el, binding) {
     el.copyData = binding.value
   },
-  beforeUnmount(el: ElType) {
+  beforeUnmount(el) {
     el.removeEventListener('click', el.__handleClick__)
   },
 }
 
-function handleClick(this: any) {
+function handleClick(e) {
   const input = document.createElement('input')
-  input.value = this.copyData.toLocaleString()
+  input.value = e.copyData.toLocaleString()
   document.body.appendChild(input)
   input.select()
   document.execCommand('Copy')

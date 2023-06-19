@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { isMobile, watchResize } from '@bassist/utils'
@@ -12,5 +12,12 @@ watchResize(() => {
 </script>
 
 <template>
-  <router-view :key="key" />
+  <router-view :key="key" class="app_box" />
 </template>
+
+<style>
+.app_box {
+  width: 100%;
+  height: 100%;
+}
+</style>

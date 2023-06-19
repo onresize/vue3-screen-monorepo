@@ -1,9 +1,8 @@
 import { ref } from 'vue'
 import { LocalStorage, SessionStorage } from '@bassist/utils'
 import { STORAGE_PREFIX } from '@/constants'
-import type { StorageType } from '@bassist/utils'
 
-export function useStorage(type: StorageType = 'localStorage') {
+export function useStorage(type = 'localStorage') {
   const prefix = ref(STORAGE_PREFIX)
   const isLocalStorage = ref(type === 'localStorage')
 
@@ -16,7 +15,7 @@ export function useStorage(type: StorageType = 'localStorage') {
    *  storage.set('uid', 1)
    *  storage.get('uid') // 1
    */
-  const storage: LocalStorage | SessionStorage = isLocalStorage.value
+  const storage = isLocalStorage.value
     ? new LocalStorage(prefix.value)
     : new SessionStorage(prefix.value)
 

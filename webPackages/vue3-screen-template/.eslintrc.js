@@ -7,7 +7,7 @@ module.exports = {
   extends: ['plugin:vue/vue3-essential', 'eslint:recommended', 'prettier'],
   parser: 'vue-eslint-parser',
   parserOptions: {
-    parser: '@typescript-eslint/parser',
+    parser: '',
     ecmaVersion: 2020,
     sourceType: 'module',
   },
