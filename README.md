@@ -3,6 +3,7 @@
 ###  项目集成特点🔨
 
 - 使用 vue3 +vite4 开发，单文件组件
+- 集成本地 mock 接口调试
 - 集成 pnpm monorepo 思想、共用私有组件、私有工具函数
 - 使用 husky、lint-staged、commitlint、git-hooks 规范提交信息（提交预检测debugger、代码冲突、暂存区代码统一格式）
 

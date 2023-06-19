@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "pnpm -F vue3-screen-template dev",
+    "build": "pnpm -F vue3-screen-template build",
     "preview": "pnpm -F vue3-screen-template preview",
     "test": "echo \"Error: no test specified\" && exit 1",
     "commit": "git add . && git cz && git push",
@@ -15,7 +16,7 @@
     "check-keyword": "bash .husky/check-keyword.sh"
   },
   "author": "",
-  "license": "ISC",
+  "license": "",
   "workspaces": [
     "webPackages",
     "components",
