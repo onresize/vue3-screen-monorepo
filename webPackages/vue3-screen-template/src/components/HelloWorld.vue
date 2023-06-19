@@ -3,11 +3,13 @@ import { storeToRefs } from 'pinia'
 import { useMessageStore } from '@/stores'
 import { getTimeState } from '@LT/utils'
 import { pButton } from '@LT/components'
-
-defineProps<{ msg: string }>()
+import { getTableList } from '@/api/page1'
 
 const store = useMessageStore()
 const { message } = storeToRefs(store)
+
+const [err, res] = await getTableList()
+console.log('mock接口测试：', res)
 </script>
 
 <template>

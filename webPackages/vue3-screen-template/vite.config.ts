@@ -1,11 +1,19 @@
 import { defineConfig, loadEnv } from 'vite'
+import path from 'path'
 import vue from '@vitejs/plugin-vue'
 import components from 'unplugin-vue-components/vite'
 import banner from 'vite-plugin-banner'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import AutoImport from 'unplugin-auto-import/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import { envDir, sourceDir, manualChunks } from './scripts/build'
 import pkg from './package.json'
+
+// 集成mock服务
+import { viteMockServe } from 'vite-plugin-mock'
+
+const resolve = (dir: string): string => path.resolve(__dirname, dir)
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -13,21 +21,16 @@ export default defineConfig(({ mode }) => {
 
   return {
     envDir, // 管理环境变量的配置文件存放目录
-
-    /**
-     * 项目部署目录路径
-     * @description 见项目根目录下的 `config` 文件夹说明
-     */
     base: env.VITE_DEPLOY_BASE_URL,
     server: {
-      port: 3000,
-      // proxy: {
-      //   '/devapi': {
-      //     target: 'http://192.168.10.198',
-      //     changeOrigin: true,
-      //     rewrite: (path) => path.replace(/^\/devapi/, ''),
-      //   },
-      // },
+      port: 3079,
+      proxy: {
+        '/baseApi': {
+          target: env.VITE_APP_BASE_API_URL,
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/baseApi/, ''),
+        },
+      },
     },
 
     build: {
@@ -105,6 +108,31 @@ export default defineConfig(({ mode }) => {
        */
       vue(),
       VueSetupExtend(), // * name 可以写在 script 标签上
+      // 本地和后端调试注释下面配置、或更改配置
+      viteMockServe({
+        mockPath: './mock/source/', // 解析，路径可根据实际变动
+        localEnabled: true, // 此处可以手动设置为true，也可以根据官方文档格式 开发环境
+        prodEnabled: true, // 生产环境设为true，也可以根据官方文档格式
+        injectCode: ` import { mockXHR } from './mock';
+        mockXHR(); `,
+        logger: true, //是否在控制台显示请求日志
+        watchFiles: false, // 监听文件内容变更
+        injectFile: resolve(__dirname, 'src/main.ts'), // 在main.ts注册后需要在此处注入，否则可能报找不到setupProdMockServer的错误
+      }),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      /**
+       * 自动导入组件，不用每次都 import
+       * @see https://github.com/antfu/unplugin-vue-components#configuration
+       */
+      components({
+        dirs: [resolve('src/components')],
+        extensions: ['vue', 'ts'],
+        deep: true,
+        dts: false,
+        resolvers: [ElementPlusResolver()],
+      }),
 
       /**
        * 如果需要支持 `.tsx` 组件，请安装 `@vitejs/plugin-vue-jsx` 这个包

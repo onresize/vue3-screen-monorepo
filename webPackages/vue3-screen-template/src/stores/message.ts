@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 export const useMessageStore = defineStore('message', {
   state: () => ({
     message: 'Hello World',
+    cancelAxios: null,
   }),
   getters: {
     fullMessage: (state) => `The message is "${state.message}".`,

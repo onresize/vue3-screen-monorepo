@@ -22,3 +22,7 @@ pnpm dev
 node >= 16.x.x
 ```
 
+```js
+pnpm config set ignore-workspace-root-check true
+```
+
