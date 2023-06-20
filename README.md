@@ -5,6 +5,7 @@
 - 使用 vue3 +vite4 开发，单文件组件
 - 使用 Windi CSS原子化构建样式
 - 集成本地 mock 接口调试
+- 函数式编程使用图片预览
 - 集成 pnpm monorepo 思想、共用私有组件、私有工具函数
 - 使用 husky、lint-staged、commitlint、git-hooks 规范提交信息（提交预检测debugger、代码冲突、暂存区代码统一格式）
 
@@ -12,6 +13,7 @@
 - components: 公共的、可单独抽离的(不需要依赖状态的)、所有项目使用的公共的组件
 - utils: 公共的函数工具方法
 - webPackages: 所有前端项目存储在该文件夹下
+- 项目中 components/AutoImportCom 文件夹下定义的组件会自动引入、ElemPlus相关也会自动引入
 
 ```js
 pnpm i
