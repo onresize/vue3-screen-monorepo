@@ -70,11 +70,12 @@ onMounted(() => {
     bottom: 0;
     margin: auto;
     padding: 20px;
+    display: flex;
+    justify-content: center;
 
     &.page-container-left {
       left: 0;
       top: 30px;
-      // transform: translateX(0%);
       transform: translateX(-110%);
       transition: all 1s;
     }
@@ -83,7 +84,6 @@ onMounted(() => {
       right: 0;
       top: 30px;
       transform: translateX(110%);
-      // transform: translateX(0%);
       transition: all 1s;
     }
 
@@ -117,10 +117,10 @@ onMounted(() => {
     bottom: 0;
     left: 0;
     transform: translateY(30vh);
-    // transform: translateY(0%);
     transition: all 1s;
     display: flex;
-    align-items: flex-end;
+    justify-content: center;
+    align-items: center;
 
     &.active {
       transform: translateY(0%) !important;

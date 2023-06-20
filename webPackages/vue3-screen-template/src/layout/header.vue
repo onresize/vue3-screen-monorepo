@@ -10,7 +10,13 @@ import { reactive } from 'vue'
 
 <style scoped>
 .header_border {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  font-weight: bold;
   width: 100%;
   height: 100%;
+  z-index: 5;
 }
 </style>
