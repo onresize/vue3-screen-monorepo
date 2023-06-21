@@ -2,7 +2,7 @@
 import { createProdMockServer } from 'vite-plugin-mock/es/createProdMockServer'
 
 // 全部导入
-const modules = import.meta.globEager('./**/*.ts')
+const modules = import.meta.globEager('./**/*.js')
 
 const mockModules = []
 Object.keys(modules).forEach((key) => {

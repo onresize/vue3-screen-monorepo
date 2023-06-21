@@ -1,4 +1,3 @@
-import type { MockMethod } from 'vite-plugin-mock'
 import Mock from 'mockjs'
 
 // mock语法： http://mockjs.com/examples.html
@@ -36,4 +35,4 @@ export default [
       }
     },
   },
-] as MockMethod[]
+]

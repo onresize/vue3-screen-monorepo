@@ -3,7 +3,7 @@ import { useMessageStore } from '@/stores'
 
 const store = useMessageStore()
 
-export default function server(obj: any) {
+export default function server(obj) {
   axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
   axios.defaults.withCredentials = false
   return new Promise((resolve, reject) => {
