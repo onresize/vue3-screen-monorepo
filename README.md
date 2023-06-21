@@ -49,6 +49,10 @@ pnpm commit // 约定式规范提交代码
 format-code // 统一格式化暂存区代码风格
 check-keyword // 提交代码预检测是否有debugger
 check-conflict // 提交代码预检测是否有多人开发代码冲突
+
+# 根目录下给子包单独安装依赖 ( pnpm i echarts --filter <项目名> )
+基于 pnpm 提供的 workspace:协议，可以方便的在 webPackages 内部进行互相引用
+例：pnpm i echarts --filter vue3-screen-template 
 ```
 
 yarn commit 运行后，会有如下 6 个步骤

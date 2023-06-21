@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  bin-wrapper: npm:bin-wrapper-china
+
 importers:
 
   .:
@@ -59,6 +62,9 @@ importers:
       axios:
         specifier: ^1.4.0
         version: 1.4.0
+      echarts:
+        specifier: ^5.4.2
+        version: 5.4.2
       pinia:
         specifier: ^2.0.33
         version: 2.0.33(typescript@5.0.2)(vue@3.2.47)
@@ -1290,14 +1296,16 @@ packages:
       find-versions: 3.2.0
     dev: true
 
-  /bin-wrapper@4.1.0:
-    resolution: {integrity: sha512-hfRmo7hWIXPkbpi0ZltboCMVrU+0ClXR/JgbCKKjlDjQf6igXa7OwdqNcFWQZPZTgiY7ZpzE3+LjjkLiTN2T7Q==}
-    engines: {node: '>=6'}
+  /bin-wrapper-china@0.1.0:
+    resolution: {integrity: sha512-1UCm17WYEbgry50tup+AQN+JGVEVzoW4f8HMl899k1lvuFxWKGZXl/G2fgxQxAckRjnloO3ijLVVEsv8zescUg==}
+    engines: {node: '>=8.3'}
+    hasBin: true
     dependencies:
       bin-check: 4.1.0
       bin-version-check: 4.0.0
+      binary-mirror-config: 1.41.0
       download: 7.1.0
-      import-lazy: 3.1.0
+      import-lazy: 4.0.0
       os-filter-obj: 2.0.0
       pify: 4.0.1
     dev: true
@@ -1305,6 +1313,10 @@ packages:
   /binary-extensions@2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
     engines: {node: '>=8'}
+    dev: true
+
+  /binary-mirror-config@1.41.0:
+    resolution: {integrity: sha512-ZiIhR1s6Sv1Fv6qCQqfPjx0Cj86BgFlhqNxZgHkQOWcxJcMbO3mj1iqsuVjowYqJqeZL8e52+IEv7IRnSX6T6w==}
     dev: true
 
   /bl@1.2.3:
@@ -1847,7 +1859,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
     dev: true
 
   /cz-conventional-changelog@3.3.0:
@@ -2135,6 +2147,13 @@ packages:
   /eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
+
+  /echarts@5.4.2:
+    resolution: {integrity: sha512-2W3vw3oI2tWJdyAz+b8DuWS0nfXtSDqlDmqgin/lfzbkB01cuMEN66KWBlmur3YMp5nEDEEt5s23pllnAzB4EA==}
+    dependencies:
+      tslib: 2.3.0
+      zrender: 5.4.3
+    dev: false
 
   /ee-first@1.1.1:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
@@ -3113,7 +3132,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
       execa: 5.1.1
       logalot: 2.1.0
     dev: true
@@ -3476,9 +3495,9 @@ packages:
       resolve-from: 4.0.0
     dev: true
 
-  /import-lazy@3.1.0:
-    resolution: {integrity: sha512-8/gvXvX2JMn0F+CDlSC4l6kOmVaLOO3XLkksI7CI3Ud95KDYJuYur2b9P/PUt/i/pDAMd/DulQsNbbbmRRsDIQ==}
-    engines: {node: '>=6'}
+  /import-lazy@4.0.0:
+    resolution: {integrity: sha512-rKtvo6a868b5Hu3heneU+L4yEQ4jYKLtjpnPeUdK7h0yzXGmyBTypknlkCvHFBqfX9YlorEiMM6Dnq/5atfHkw==}
+    engines: {node: '>=8'}
     dev: true
 
   /imurmurhash@0.1.4:
@@ -3757,7 +3776,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
       logalot: 2.1.0
     dev: true
 
@@ -3768,7 +3787,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
     dev: true
 
   /js-sdsl@4.4.1:
@@ -4338,7 +4357,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
     dev: true
 
   /ms@2.0.0:
@@ -4535,7 +4554,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
     dev: true
 
   /ora@5.4.1:
@@ -4870,7 +4889,7 @@ packages:
     requiresBuild: true
     dependencies:
       bin-build: 3.0.0
-      bin-wrapper: 4.1.0
+      bin-wrapper: /bin-wrapper-china@0.1.0
       execa: 4.1.0
     dev: true
 
@@ -5720,6 +5739,10 @@ packages:
       yn: 3.1.1
     dev: true
 
+  /tslib@2.3.0:
+    resolution: {integrity: sha512-N82ooyxVNm6h1riLCoyS9e3fuJ3AMG2zIZs2Gd1ATcSFjSA23Q0fzjjZeh0jbJvWVDZ0cJT8yaNNaaXHzueNjg==}
+    dev: false
+
   /tslib@2.5.3:
     resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
     dev: true
@@ -6273,3 +6296,9 @@ packages:
       normalize-path: 1.0.0
       strip-indent: 2.0.0
     dev: true
+
+  /zrender@5.4.3:
+    resolution: {integrity: sha512-DRUM4ZLnoaT0PBVvGBDO9oWIDBKFdAVieNWxWwK0niYzJCMwGchRk21/hsE+RKkIveH3XHCyvXcJDkgLVvfizQ==}
+    dependencies:
+      tslib: 2.3.0
+    dev: false
