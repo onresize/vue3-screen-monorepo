@@ -1,4 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory,
+  createWebHashHistory,
+} from 'vue-router'
 import progress from '@bassist/progress'
 import routes from './routes'
 import { APP_NAME } from '@/constants'
