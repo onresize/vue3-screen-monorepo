@@ -7,6 +7,9 @@ import banner from 'vite-plugin-banner'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
+import viteCompression from 'vite-plugin-compression'
+import vitePluginCDN from 'vite-plugin-cdn-import'
+import viteImagemin from 'vite-plugin-imagemin'
 import { envDir, sourceDir, manualChunks } from './scripts/build'
 import pkg from './package.json'
 
@@ -18,10 +21,10 @@ import { viteMockServe } from 'vite-plugin-mock'
 
 const resolve = (dir) => path.resolve(__dirname, dir)
 
-// https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, envDir)
 
+  console.log('环境:', env)
   return {
     envDir, // 管理环境变量的配置文件存放目录
     base: env.VITE_DEPLOY_BASE_URL,
@@ -37,6 +40,14 @@ export default defineConfig(({ mode }) => {
     },
 
     build: {
+      minify: 'terser', // terser比esbuild（默认）慢20倍左右、可清除console、debugger
+      // 清除console等多余代码
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
       rollupOptions: {
         output: {
           /**
@@ -106,12 +117,28 @@ export default defineConfig(({ mode }) => {
     },
 
     plugins: [
-      /**
-       * 支持 `.vue` 文件的解析
-       */
       vue(),
+      // 配置CDN
+      vitePluginCDN({
+        modules: [
+          {
+            name: 'element-plus',
+            var: 'ElementPlus',
+            path: 'https://unpkg.zhimg.com/element-plus@2.3.6/dist/index.full.js',
+          },
+        ],
+      }),
       WindiCSS(),
-      VueSetupExtend(), // * name 可以写在 script 标签上
+      // 开启Gzip压缩
+      viteCompression({
+        verbose: true, // 是否在控制台输出压缩结果
+        disable: false, // 是否禁用,相当于开关在这里
+        threshold: 10240, // 体积大于 threshold 才会被压缩,单位 b，1b=8B, 1B=1024KB  那我们这里相当于 9kb多吧，就会压缩
+        algorithm: 'gzip', // 压缩算法,可选 [ 'gzip' , 'brotliCompress' ,'deflate' , 'deflateRaw']
+        ext: '.gz', //文件后缀
+      }),
+      // name 可以写在 script 标签上
+      VueSetupExtend(),
       // 本地和后端调试注释下面配置、或更改配置
       viteMockServe({
         mockPath: './mock/source/', // 解析，路径可根据实际变动
@@ -123,6 +150,34 @@ export default defineConfig(({ mode }) => {
         watchFiles: false, // 监听文件内容变更
         injectFile: resolve(__dirname, 'src/main.js'), // 在main.js注册后需要在此处注入，否则可能报找不到setupProdMockServer的错误
       }),
+      // 图片压缩、更多配置： https://github.com/vbenjs/vite-plugin-imagemin
+      viteImagemin({
+        gifsicle: {
+          optimizationLevel: 7,
+          interlaced: false,
+        },
+        optipng: {
+          optimizationLevel: 7,
+        },
+        mozjpeg: {
+          quality: 20,
+        },
+        pngquant: {
+          quality: [0.8, 0.9],
+          speed: 4,
+        },
+        svgo: {
+          plugins: [
+            {
+              name: 'removeViewBox',
+            },
+            {
+              name: 'removeEmptyAttrs',
+              active: false,
+            },
+          ],
+        },
+      }),
       /**
        * 如果需要支持 `.jsx` 组件，请安装 `@vitejs/plugin-vue-jsx` 这个包
        * 并在这里添加一个插件导入 `import vueJsx from '@vitejs/plugin-vue-jsx'`
@@ -133,7 +188,7 @@ export default defineConfig(({ mode }) => {
         resolvers: [ElementPlusResolver()],
       }),
       /**
-       * 自动导入组件，不用每次都 import
+       * src/components/AutoImportCom文件夹下的组件自动导入，不用每次都 import
        * @see https://github.com/antfu/unplugin-vue-components#configuration
        */
       components({
