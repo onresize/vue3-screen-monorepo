@@ -1,12 +1,11 @@
-<script setup lang="ts">
+<script setup>
 import { ref } from 'vue'
 import { isDark as isDarkMode } from '@bassist/utils'
 import { useStorage } from '@/hooks'
-import type { PrefersColorScheme } from '@bassist/utils'
 
 const { storage } = useStorage()
 const STORAGE_KEY = 'theme-appearance'
-const isDark = ref<boolean>(isDarkMode())
+const isDark = ref(isDarkMode())
 
 function getLocalTheme() {
   return storage.get(STORAGE_KEY)
@@ -15,13 +14,13 @@ const defaultThemeIsDark = getLocalTheme()
   ? getLocalTheme() === 'dark'
   : isDarkMode()
 
-function updateTheme(isDarkTheme: boolean) {
-  const newTheme: PrefersColorScheme = isDarkTheme ? 'dark' : 'light'
+function updateTheme(isDarkTheme) {
+  const newTheme = isDarkTheme ? 'dark' : 'light'
   storage.set(STORAGE_KEY, newTheme)
   isDark.value = newTheme === 'dark'
 
   const root = document.querySelector('html')
-  root!.className = newTheme
+  root && (root.className = newTheme)
 }
 updateTheme(defaultThemeIsDark)
 
@@ -32,7 +31,7 @@ function toggleTheme() {
 </script>
 
 <template>
-  <a
+  <a1
     class="toggle-theme"
     :title="`切换到${isDark ? '普通' : '暗黑'}模式`"
     @click="toggleTheme"
@@ -50,7 +49,7 @@ function toggleTheme() {
         d="M12 21q-3.75 0-6.375-2.625T3 12q0-3.75 2.625-6.375T12 3q.35 0 .688.025q.337.025.662.075q-1.025.725-1.637 1.887Q11.1 6.15 11.1 7.5q0 2.25 1.575 3.825Q14.25 12.9 16.5 12.9q1.375 0 2.525-.613q1.15-.612 1.875-1.637q.05.325.075.662Q21 11.65 21 12q0 3.75-2.625 6.375T12 21Zm0-2q2.2 0 3.95-1.212q1.75-1.213 2.55-3.163q-.5.125-1 .2q-.5.075-1 .075q-3.075 0-5.238-2.162Q9.1 10.575 9.1 7.5q0-.5.075-1t.2-1q-1.95.8-3.162 2.55Q5 9.8 5 12q0 2.9 2.05 4.95Q9.1 19 12 19Zm-.25-6.75Z"
       />
     </svg>
-  </a>
+  </a1>
 </template>
 
 <style lang="less" scoped>

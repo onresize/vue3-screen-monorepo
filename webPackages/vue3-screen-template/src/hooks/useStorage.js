@@ -8,7 +8,7 @@ export function useStorage(type = 'localStorage') {
 
   /**
    * Storage 实例，可以操作具体的 API
-   * @description 具体的 API 和用法可以看文档或者 TypeScript 类型声明
+   * @description 具体的 API 和用法可以看文档
    * @see https://paka.dev/npm/@bassist/utils
    *
    * @example
