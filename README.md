@@ -10,7 +10,27 @@
 - 集成 pnpm monorepo 思想、共用私有组件、私有工具函数
 - 使用 husky、lint-staged、commitlint、git-hooks 规范提交信息（提交预检测debugger、代码冲突、暂存区代码统一格式）
 
+####  注意：
+
+```js
+// 开启gzip后、上线ngnix需要配置如下才能生效：
+详情参考：https://juejin.cn/post/7114540697276907551
+http {
+    gzip_static on;
+    gzip_proxied any;
+}
+
+// 默认使用的路由history模式、需配置ngnix如下(防止上线刷新404问题)、或使用hash模式
+ server {
+      listen 80;
+      location / {
+        try_files $uri $uri/ /index.html;
+      }
+ }
+```
+
 ### 项目文件目录说明
+
 - components: 公共的、可单独抽离的(不需要依赖状态的)、所有项目使用的公共的组件
 - utils: 公共的函数工具方法
 - webPackages: 所有前端项目存储在该文件夹下
