@@ -67,7 +67,7 @@ importers:
         version: 5.4.2
       pinia:
         specifier: ^2.0.33
-        version: 2.0.33(typescript@5.0.2)(vue@3.2.47)
+        version: 2.0.33(vue@3.2.47)
       vue:
         specifier: ^3.2.47
         version: 3.2.47
@@ -105,18 +105,12 @@ importers:
       less:
         specifier: ^4.1.3
         version: 4.1.3
-      lint-staged:
-        specifier: ^13.2.0
-        version: 13.2.0
       mockjs:
         specifier: ^1.1.0
         version: 1.1.0
       prettier:
         specifier: ^2.8.6
         version: 2.8.6
-      simple-git-hooks:
-        specifier: ^2.8.1
-        version: 2.8.1
       unplugin-auto-import:
         specifier: ^0.16.4
         version: 0.16.4(rollup@2.79.1)
@@ -125,7 +119,7 @@ importers:
         version: 0.24.1(rollup@2.79.1)(vue@3.2.47)
       vite:
         specifier: ^4.2.1
-        version: 4.3.9(@types/node@18.15.5)(less@4.1.3)
+        version: 4.3.9(less@4.1.3)
       vite-plugin-banner:
         specifier: ^0.7.0
         version: 0.7.0
@@ -945,7 +939,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.3.9(@types/node@18.15.5)(less@4.1.3)
+      vite: 4.3.9(less@4.1.3)
       vue: 3.2.47
     dev: true
 
@@ -3899,29 +3893,6 @@ packages:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
     dev: true
 
-  /lint-staged@13.2.0:
-    resolution: {integrity: sha512-GbyK5iWinax5Dfw5obm2g2ccUiZXNGtAS4mCbJ0Lv4rq6iEtfBSjOYdcbOtAIFtM114t0vdpViDDetjVTSd8Vw==}
-    engines: {node: ^14.13.1 || >=16.0.0}
-    hasBin: true
-    dependencies:
-      chalk: 5.2.0
-      cli-truncate: 3.1.0
-      commander: 10.0.1
-      debug: 4.3.4
-      execa: 7.1.1
-      lilconfig: 2.1.0
-      listr2: 5.0.8
-      micromatch: 4.0.5
-      normalize-path: 3.0.0
-      object-inspect: 1.12.3
-      pidtree: 0.6.0
-      string-argv: 0.3.2
-      yaml: 2.3.1
-    transitivePeerDependencies:
-      - enquirer
-      - supports-color
-    dev: true
-
   /lint-staged@13.2.2:
     resolution: {integrity: sha512-71gSwXKy649VrSU09s10uAT0rWCcY3aewhMaHyl2N84oBk4Xs9HgxvUp3AYu+bNsK4NrOYYxvSgg7FyGJ+jGcA==}
     engines: {node: ^14.13.1 || >=16.0.0}
@@ -4844,7 +4815,7 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /pinia@2.0.33(typescript@5.0.2)(vue@3.2.47):
+  /pinia@2.0.33(vue@3.2.47):
     resolution: {integrity: sha512-HOj1yVV2itw6rNIrR2f7+MirGNxhORjrULL8GWgRwXsGSvEqIQ+SE0MYt6cwtpegzCda3i+rVTZM+AM7CG+kRg==}
     peerDependencies:
       '@vue/composition-api': ^1.4.0
@@ -4857,7 +4828,6 @@ packages:
         optional: true
     dependencies:
       '@vue/devtools-api': 6.5.0
-      typescript: 5.0.2
       vue: 3.2.47
       vue-demi: 0.14.5(vue@3.2.47)
     dev: false
@@ -5308,12 +5278,6 @@ packages:
 
   /signal-exit@3.0.7:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
-    dev: true
-
-  /simple-git-hooks@2.8.1:
-    resolution: {integrity: sha512-DYpcVR1AGtSfFUNzlBdHrQGPsOhuuEJ/FkmPOOlFysP60AHd3nsEpkGq/QEOdtUyT1Qhk7w9oLmFoMG+75BDog==}
-    hasBin: true
-    requiresBuild: true
     dev: true
 
   /slash@3.0.0:
@@ -5794,6 +5758,7 @@ packages:
     resolution: {integrity: sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==}
     engines: {node: '>=12.20'}
     hasBin: true
+    dev: true
 
   /ufo@1.1.2:
     resolution: {integrity: sha512-TrY6DsjTQQgyS3E3dBaOXf0TpPD8u9FVrVYmKVegJuFw51n/YB9XPt+U6ydzFG5ZIN7+DIjPbNmXoBj9esYhgQ==}
@@ -5966,7 +5931,7 @@ packages:
       chalk: 4.1.2
       debug: 4.3.4
       fs-extra: 10.1.0
-      vite: 4.3.9(@types/node@18.15.5)(less@4.1.3)
+      vite: 4.3.9(less@4.1.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5988,7 +5953,7 @@ packages:
       html-minifier-terser: 6.1.0
       node-html-parser: 5.4.2
       pathe: 0.2.0
-      vite: 4.3.9(@types/node@18.15.5)(less@4.1.3)
+      vite: 4.3.9(less@4.1.3)
     dev: true
 
   /vite-plugin-imagemin@0.6.1(vite@4.3.9):
@@ -6019,7 +5984,7 @@ packages:
       imagemin-webp: 6.1.0
       jpegtran-bin: 6.0.1
       pathe: 0.2.0
-      vite: 4.3.9(@types/node@18.15.5)(less@4.1.3)
+      vite: 4.3.9(less@4.1.3)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -6041,7 +6006,7 @@ packages:
       fast-glob: 3.2.12
       mockjs: 1.1.0
       path-to-regexp: 6.2.1
-      vite: 4.3.9(@types/node@18.15.5)(less@4.1.3)
+      vite: 4.3.9(less@4.1.3)
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -6054,7 +6019,7 @@ packages:
     dependencies:
       '@vue/compiler-sfc': 3.2.47
       magic-string: 0.25.9
-      vite: 4.3.9(@types/node@18.15.5)(less@4.1.3)
+      vite: 4.3.9(less@4.1.3)
     dev: true
 
   /vite-plugin-windicss@1.9.0(vite@4.3.9):
@@ -6065,7 +6030,7 @@ packages:
       '@windicss/plugin-utils': 1.9.0
       debug: 4.3.4
       kolorist: 1.8.0
-      vite: 4.3.9(@types/node@18.15.5)(less@4.1.3)
+      vite: 4.3.9(less@4.1.3)
       windicss: 3.5.6
     transitivePeerDependencies:
       - supports-color
@@ -6097,6 +6062,39 @@ packages:
         optional: true
     dependencies:
       '@types/node': 18.15.5
+      esbuild: 0.17.19
+      less: 4.1.3
+      postcss: 8.4.24
+      rollup: 3.25.1
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /vite@4.3.9(less@4.1.3):
+    resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
       esbuild: 0.17.19
       less: 4.1.3
       postcss: 8.4.24
