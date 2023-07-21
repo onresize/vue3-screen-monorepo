@@ -54,6 +54,16 @@ check-conflict // 提交代码预检测是否有多人开发代码冲突
 基于 pnpm 提供的 workspace:协议，可以方便的在 webPackages 内部进行互相引用
 例： pnpm i echarts --filter vue3-screen-template 	
 	pnpm uninstall echarts --filter vue3-screen-template 
+
+# 子项目安装公用包、找到共用部分的package.json下的name
+tools 和 components下的 package.json 配置 "private": true私有化
+例: 根目录下的components 对应 name：'@LT/components'
+下面多种安装方式：
+1：在根目录终端使用 pnpm i @LT/components --filter vue3-screen-template -D
+2：在子项目终端使用 pnpm i @LT/components -D 或 pnpm ../../components -D
+ 子包依赖项可能显示 "@LT/components": "workspace:^" 或 "@LT/components": "file:../../components"
+
+PS: monorepo下的项目子包安装一次后、如果更新了本地共用包、会自动同步依赖、直接引入就能正常使用
 ```
 
 pnpm commit 运行后，会有如下 6 个步骤

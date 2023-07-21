@@ -28,7 +28,12 @@ onMounted(() => {
     </div>
 
     <!-- XXX中上、非头部 -->
-    <div class="page-container-center-top">
+    <div
+      :class="[
+        'page-container-center-top',
+        state.showAnimation ? 'active' : '',
+      ]"
+    >
       <slot name="containerCenterTop"></slot>
     </div>
 
@@ -72,6 +77,7 @@ onMounted(() => {
     padding: 20px;
     display: flex;
     justify-content: center;
+    cursor: grab;
 
     &.page-container-left {
       left: 0;
@@ -94,17 +100,20 @@ onMounted(() => {
   }
 
   .page-container-center-top {
-    border: 3px solid red;
+    border: 5px solid greenyellow;
     position: absolute;
-    top: 0;
+    top: 30px;
     left: 50%;
+    width: 800px;
+    height: 100px;
     transform: translate(-50%, -30vh);
     transition: all 1s;
+    cursor: wait;
+    display: grid;
+    place-content: center;
 
     &.active {
-      transform: translateY(0%);
-      transition: all 1s;
-      z-index: 12;
+      transform: translate(-50%, 0%) !important;
     }
   }
 
@@ -121,6 +130,7 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: -webkit-zoom-out;
 
     &.active {
       transform: translateY(0%) !important;

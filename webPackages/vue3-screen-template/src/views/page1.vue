@@ -14,6 +14,13 @@ const Router = useRouter()
       </div>
     </template>
 
+    <!-- 中上 -->
+    <template v-slot:containerCenterTop>
+      <div>
+        <h2 class="font">中上</h2>
+      </div>
+    </template>
+
     <!-- 中下 -->
     <template v-slot:containerCenterBottom>
       <div>
