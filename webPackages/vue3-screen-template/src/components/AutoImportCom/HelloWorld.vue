@@ -2,21 +2,24 @@
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useMessageStore } from '@/stores'
-import { getTimeState } from '@LT/utils'
+import { getTimeState, onceFunc } from '@LT/utils'
 import { pButton } from '@LT/components'
 import { getTableList } from '@/api/page1'
 
 const store = useMessageStore()
-const { message } = storeToRefs(store)
+const { message, onlyRunOnce, num } = storeToRefs(store)
 
 const iptData = ref('我是被复制的内容 🍒 🍉 🍊')
 
-ElNotification({
-  title: getTimeState(),
-  message: '欢迎登录 vue3-screen-template',
-  type: 'success',
-  duration: 3000,
-})
+onceFunc(() => {
+  store.updateOnlyRunOnceSync(true)
+  ElNotification({
+    title: getTimeState(),
+    message: '欢迎登录 vue3-screen-template',
+    type: 'success',
+    duration: 3000,
+  })
+})(onlyRunOnce.value)
 
 // eslint-disable-next-line
 const getList = async () => {
@@ -32,8 +35,8 @@ getList()
 
   <pButton>公共按钮组件</pButton>
 
-  <blockquote>
-    <p>{{ message }}</p>
+  <blockquote @click="store.updateNumSync">
+    <p>{{ message + '：' + num }}</p>
   </blockquote>
 </template>
 

@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+import { pinia } from '@/stores/index.js'
 import App from '@/App.vue'
 import router from '@/router'
 
@@ -24,9 +24,4 @@ import directives from './directives'
 import ImageViewer from '@/components/ImageViewer/index'
 
 const app = createApp(App)
-app
-  .use(directives, app)
-  .use(ImageViewer)
-  .use(createPinia()) // 启用 Pinia
-  .use(router)
-  .mount('#app')
+app.use(directives, app).use(ImageViewer).use(pinia).use(router).mount('#app')

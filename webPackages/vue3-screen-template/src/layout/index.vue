@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import Header from './header.vue'
-import { autofit } from '@LT/utils'
+import { autofit, onceFunc } from '@LT/utils'
 
 const route = useRoute()
 const key = computed(() => `${String(route.name || route.path)}-${new Date()}`)

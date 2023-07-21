@@ -10,10 +10,9 @@ export function getTimeState() {
 
 // 函数只执行一次
 export function onceFunc(func) {
-  let called = false;
-  return function () {
-    if (!called) {
-      called = true;
+  return function (arg) {
+    console.log("arg形参-------", arg);
+    if (!arg) {
       func.apply(this, arguments);
     }
   };
