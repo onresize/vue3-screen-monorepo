@@ -25,7 +25,9 @@ const key = computed(() => `${String(route.name || route.path)}-${new Date()}`)
     width: 100%;
     height: 100px;
     border: 10px solid green;
-    cursor: -webkit-zoom-in;
+    // cursor: -webkit-zoom-in;
+    position: relative;
+    z-index: 10;
   }
 
   .content {

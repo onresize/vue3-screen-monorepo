@@ -5,6 +5,7 @@ export const useMessageStore = defineStore('message', {
     message: 'Hello World',
     onlyRunOnce: false,
     num: 0,
+    iconList: [], // 所有svg图片
   }),
   getters: {
     fullMessage: (state) => `The message is "${state.message}".`,
@@ -35,10 +36,13 @@ export const useMessageStore = defineStore('message', {
       this.num++
       return 'Sync done.'
     },
+    changeSvgList(list) {
+      this.iconList = list
+    },
   },
   persist: {
     enabled: true, // 开启持久化
-    paths: ['onlyRunOnce', 'num'], // 需要持久化的数据
-    storage: globalThis.sessionStorage, // 持久化保存在sessionStorage
+    paths: ['onlyRunOnce', 'num', 'iconList'], // 需要持久化的数据
+    storage: globalThis.localStorage, // 持久化保存在localStorage
   },
 })

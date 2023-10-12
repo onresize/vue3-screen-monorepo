@@ -18,10 +18,6 @@ export const CallBackMessage = async (cmdName, argString, callback) => {
   switch (cmdName) {
     case 'LevelLoadComplete':
       break
-    case 'MoveComplete':
-      counter.MoveComplete(true + Date.now())
-      console.log(cmdName, 'MoveComplete')
-      break
     case 'OnPlaceNewPoint':
       break
     case 'OnHitNCAreaUI':
@@ -42,7 +38,6 @@ export const WebSocketUtil = () => {
   //websocket连接出错的回调
   websocket.onConnectWebSocketError = (error) => {
     console.log('重试链接')
-    // XR.CallFunction("ShowDevTools");
     setTimeout(function () {
       XR.ConnectWebSocket('127.0.0.1')
     }, 2000)

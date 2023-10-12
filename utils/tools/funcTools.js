@@ -94,3 +94,68 @@ export function Throttle(func, wait = 500, event = {}, immediate = true) {
     }, wait);
   }
 }
+
+// 全屏
+let element = document.documentElement;
+export const ScreenObj = {
+  // 进入全屏
+  FullScreen() {
+    if (element.requestFullscreen) {
+      element.requestFullscreen();
+    } else if (element.webkitRequestFullScreen) {
+      element.webkitRequestFullScreen();
+    } else if (element.mozRequestFullScreen) {
+      element.mozRequestFullScreen();
+    } else if (element.msRequestFullscreen) {
+      // IE11
+      element.msRequestFullscreen();
+    }
+  },
+  // 退出全屏
+  NarrowScreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitCancelFullScreen) {
+      document.webkitCancelFullScreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  },
+};
+
+// const loadFileAsync = async () => {
+//   await loadScript('/static/ue/xxx.js', () => {
+//     console.log('加载成功--->>')
+//   })
+// }
+// 动态引入脚本
+export function loadScript(url, callback) {
+  return new Promise((resolve) => {
+    let script = document.createElement("script");
+    script.type = "text/javascript";
+    if (typeof callback != "undefined") {
+      if (script.readyState) {
+        script.onreadystatechange = function () {
+          if (script.readyState == "loaded" || script.readyState == "complete") {
+            script.onreadystatechange = null;
+            resolve(() => {
+              document.body.removeChild(script);
+              console.log("remove------------");
+            }) & callback();
+          }
+        };
+      } else {
+        script.onload = function () {
+          resolve(() => {
+            document.body.removeChild(script);
+            console.log("remove------------");
+          }) & callback();
+        };
+      }
+    }
+    script.src = url;
+    document.body.appendChild(script);
+  });
+}

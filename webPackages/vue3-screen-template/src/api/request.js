@@ -5,12 +5,10 @@ const store = useMessageStore()
 
 export default function server(obj) {
   axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
-  axios.defaults.withCredentials = false
+  axios.defaults.withCredentials = false // 跨域携带cookie
   return new Promise((resolve, reject) => {
     const request = axios.create({
-      baseURL: obj.url.includes('/api')
-        ? import.meta.env.VITE_APP_OTHER_API
-        : import.meta.env.VITE_APP_BASE_API,
+      // baseURL:'',
       timeout: 10000,
     })
 

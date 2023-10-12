@@ -25,6 +25,13 @@ const ImagePreview = (urls, options) => {
   vm.isShow = true
 }
 
+// XXX调用
+//  proxy.$PIC([imageUrl], {
+//   initialIndex: 0,
+//   infinite: true,
+//   hideOnClickModal: false,
+// });
+
 export default {
   install: (app) => {
     app.config.globalProperties.$PIC = ImagePreview

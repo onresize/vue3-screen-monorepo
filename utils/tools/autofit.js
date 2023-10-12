@@ -6,52 +6,40 @@ let timer = null;
 let currScale = 1;
 let isAutofitRunnig = false;
 let isElRectification = false;
-const autofit = {
+export const AutoFit = {
   init(options = {}, isShowInitTip = true) {
     if (isShowInitTip) {
       console.log(
         `%c` + `autofit.js` + ` is running`,
         `font-weight: bold; color: #ffb712; background:linear-gradient(-45deg, #bd34fe 50%, #47caff 50% );background: -webkit-linear-gradient( 120deg, #bd34fe 30%, #41d1ff );background-clip: text;-webkit-background-clip: text; -webkit-text-fill-color:linear-gradient( -45deg, #bd34fe 50%, #47caff 50% ); padding: 8px 12px; border-radius: 4px;`
       );
-      console.log("获取到当前屏幕分辨率：", options.dw + "*" + options.dh);
     }
-    const { dw = 1920, dh = 929, el = typeof options === "string" ? options : "#app", resize = true, ignore = [], transition = "none", delay = 0 } = options;
+    const { dw = 1920, dh = 1080, el = typeof options === "string" ? options : "#app", resize = true, transition = "none", delay = 0 } = options;
     currRenderDom = el;
     let dom = document.querySelector(el);
     if (!dom) {
       console.error(`autofit: '${el}' is not exist`);
       return;
     }
-    const style = document.createElement("style");
-    const ignoreStyle = document.createElement("style");
-    style.lang = "text/css";
-    ignoreStyle.lang = "text/css";
-    style.id = "autofit-style";
-    ignoreStyle.id = "ignoreStyle";
-    style.innerHTML = `body {overflow: hidden;}`;
-    dom.appendChild(style);
-    dom.appendChild(ignoreStyle);
-    dom.style.height = `${dh}px`;
-    dom.style.width = `${dw}px`;
-    dom.style.transformOrigin = `0 0`;
-    keepFit(dw, dh, dom, ignore);
+    dom.style.transitionProperty = `all`;
+    dom.style.transitionTimingFunction = `cubic-bezier(0.4, 0, 0.2, 1)`;
+    dom.style.transitionDuration = `400ms`;
+    dom.style.transformOrigin = `left top`;
+    keepFit(dw, dh, dom);
     resizeListener = () => {
       clearTimeout(timer);
       if (delay != 0)
         timer = setTimeout(() => {
-          keepFit(dw, dh, dom, ignore);
+          keepFit(dw, dh, dom);
           isElRectification && elRectification(currelRectification, currelRectificationLevel);
         }, delay);
       else {
-        keepFit(dw, dh, dom, ignore);
+        keepFit(dw, dh, dom);
         isElRectification && elRectification(currelRectification, currelRectificationLevel);
       }
     };
     resize && window.addEventListener("resize", resizeListener);
     isAutofitRunnig = true;
-    setTimeout(() => {
-      dom.style.transition = `${transition}s`;
-    });
   },
   off(el = "#app") {
     try {
@@ -100,42 +88,16 @@ function offelRectification() {
     item.style.transform = ``;
   }
 }
-function keepFit(dw, dh, dom, ignore) {
-  let clientHeight = document.documentElement.clientHeight;
-  let clientWidth = document.documentElement.clientWidth;
-  currScale = clientWidth / clientHeight < dw / dh ? clientWidth / dw : clientHeight / dh;
-  dom.style.height = `${clientHeight / currScale}px`;
-  dom.style.width = `${clientWidth / currScale}px`;
+function keepFit(dw, dh, dom) {
+  // 获取真实视口尺寸
+  let clientWidth = document.documentElement.clientWidth; // 2304
+  let clientHeight = document.documentElement.clientHeight; // 1301
+  // 计算缩放比例、y缩放比小于1、赋默认值
+  let clientH = clientHeight / dh;
+  currScale = `${[clientWidth / dw, clientH]}`;
+  //  clientH < 1 ? `${[clientWidth / dw, 1]}` :
+  console.log("autofitJS缩放比：", `scale(${currScale})`, dw, dh);
+  dom.style.width = `${dw}px`;
+  dom.style.height = `${dh}px`;
   dom.style.transform = `scale(${currScale})`;
-  const ignoreStyleDOM = document.querySelector("#ignoreStyle");
-  ignoreStyleDOM.innerHTML = "";
-  for (let item of ignore) {
-    let itemEl = item.el || item.dom;
-    typeof item == "string" && (itemEl = item);
-    if (!itemEl) {
-      console.error(`autofit: bad selector: ${itemEl}`);
-      continue;
-    }
-    let realScale = item.scale ? item.scale : 1 / currScale;
-    let realFontSize = realScale != currScale ? item.fontSize : "autofit";
-    let realWidth = realScale != currScale ? item.width : "autofit";
-    let realHeight = realScale != currScale ? item.height : "autofit";
-    let regex = new RegExp(`${itemEl}(\x20|{)`, "gm");
-    let isIgnored = regex.test(ignoreStyleDOM.innerHTML);
-    if (isIgnored) {
-      continue;
-    }
-    ignoreStyleDOM.innerHTML += `\n${itemEl} { 
-      transform: scale(${realScale})!important;
-      transform-origin: 0 0;
-      width: ${realWidth}!important;
-      height: ${realHeight}!important;
-    }`;
-    if (realFontSize) {
-      ignoreStyleDOM.innerHTML += `\n${itemEl} div ,${itemEl} span,${itemEl} a,${itemEl} * {
-        font-size: ${realFontSize}px;
-      }`;
-    }
-  }
 }
-export { elRectification, autofit };

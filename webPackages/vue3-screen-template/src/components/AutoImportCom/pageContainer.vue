@@ -77,7 +77,7 @@ onMounted(() => {
     padding: 20px;
     display: flex;
     justify-content: center;
-    cursor: grab;
+    // cursor: grab;
 
     &.page-container-left {
       left: 0;
@@ -104,11 +104,12 @@ onMounted(() => {
     position: absolute;
     top: 30px;
     left: 50%;
+    z-index: 10;
     width: 800px;
     height: 100px;
     transform: translate(-50%, -30vh);
     transition: all 1s;
-    cursor: wait;
+    // cursor: wait;
     display: grid;
     place-content: center;
 
@@ -130,7 +131,7 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    cursor: -webkit-zoom-out;
+    // cursor: -webkit-zoom-out;
 
     &.active {
       transform: translateY(0%) !important;

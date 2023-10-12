@@ -1,4 +1,4 @@
-export * from './message'
+export * from './messageStore'
 
 //引入持久化插件
 import piniaPersist from 'pinia-plugin-persistedstate'

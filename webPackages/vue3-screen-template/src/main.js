@@ -3,17 +3,27 @@ import { pinia } from '@/stores/index.js'
 import App from '@/App.vue'
 import router from '@/router'
 
-import { WebSocketUtil } from '@/utils/UE_Connect/ue-connect'
+// 引入全局适配函数
+import { AutoFit } from '@LT/utils'
+
+// 引入全局工具函数
+import utilsFunc from '@/utils/tools'
+
 // 初始化连接socket
-WebSocketUtil()
+import { WebSocketUtil } from '@/utils/UE_Connect/ue-connect'
+
+// 全局注册SvgIcon组件
+import SvgIcon from '@cp/SvgIcon/index.vue'
 
 // 全局样式
 import '@/styles/var.less'
 import '@/styles/mixin.less'
 import '@/styles/global.less'
 
+// 引入原子化css
 import 'virtual:windi.css'
 
+// 引入elemPlus组件
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 
@@ -24,4 +34,32 @@ import directives from './directives'
 import ImageViewer from '@/components/ImageViewer/index'
 
 const app = createApp(App)
-app.use(directives, app).use(ImageViewer).use(pinia).use(router).mount('#app')
+
+void (() => {
+  AutoFit.init(
+    {
+      el: '#BoDy',
+      resize: true,
+    },
+    true
+  )
+})()
+
+WebSocketUtil()
+
+app.component('svg-icon', SvgIcon)
+
+app.use(utilsFunc)
+app.use(pinia)
+
+// 引入所有svg
+void (() => {
+  return new Promise(async (res) => {
+    await import('@/assets/icons/index')
+    res(true)
+  })
+})()
+
+app.use(directives, app).use(ImageViewer).use(router).mount('#app')
+
+window.vueVm = app

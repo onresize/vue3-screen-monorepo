@@ -13,7 +13,7 @@
     "build:dev": "vite --mode dev build",
     "build:test": "vite --mode test build",
     "preview": "vite preview --host",
-    "lint": "eslint src --ext .js,.ts",
+    "lint": "eslint src --ext .js,.ts,.vue",
     "format": "prettier --write src",
     "mirror:get": "npm config get registry",
     "mirror:set": "npm config set registry https://registry.npmmirror.com",
@@ -56,14 +56,6 @@
     "vite-plugin-vue-setup-extend": "^0.4.0",
     "vite-plugin-windicss": "^1.9.0",
     "windicss": "^3.5.6"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "npx lint-staged --concurrent false"
-  },
-  "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "prettier --write"
-    ]
   },
   "engines": {
     "node": ">= 16.x.x",

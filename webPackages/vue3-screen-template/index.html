@@ -3,7 +3,13 @@
 
 <head>
   <meta charset="UTF-8" />
+  <!-- 清理缓存 -->
+  <meta http-equiv="Expires" content="0" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Cache-control" content="no-cache" />
+  <meta http-equiv="Cache" content="no-cache" />
   <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="/public/assets/css/index.css">
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, minimal-ui, viewport-fit=cover" />
   <title>
@@ -13,36 +19,66 @@
   <meta name="keywords" content="<%= appKeywords %>" />
   <script src="/NoDebuger.js"></script>
   <style>
-    * {
+    root {
       margin: 0;
       padding: 0;
-      border: none;
       outline: none;
+      border: none;
       box-sizing: border-box;
     }
 
-    #UeTouch {
-      position: fixed;
+    body {
       width: 100%;
       height: 100%;
-      cursor: help;
-      z-index: 1;
-      inset: 0;
-      background-color: rgba(255, 222, 222, 0.5);
+      position: fixed;
+      overflow: hidden;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-drag: none;
     }
 
-    body {
-      background-color: transparent !important;
+    #player {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      display: flex;
+    }
+
+    #app {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      /* cursor: pointer; */
+    }
+
+    #UeTouch {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(255, 222, 222, 0);
+      /* cursor: help; */
     }
   </style>
-
-
 </head>
 
 <body>
-  <div id="UeTouch">
-    <div id="app"></div>
+  <div id="BoDy">
+    <div id="player"></div>
+    <div id="app">
+      <div class="pLoading">
+        <div class="loader"></div>
+      </div>
+    </div>
+    <div id="UeTouch"></div>
   </div>
+
+  <script src="/static/ue/webRtcPlayer.js"></script>
+  <script src="/static/ue/websocket.js"></script>
+  <script src="/static/ue/xrframework.js"></script>
+  <script src="/static/js/jquery-1.12.4.min.js"></script>
   <script type="module" src="/src/main.js"></script>
 </body>
 

@@ -12,6 +12,8 @@ import vitePluginCDN from 'vite-plugin-cdn-import'
 import viteImagemin from 'vite-plugin-imagemin'
 import { envDir, sourceDir, manualChunks } from './scripts/build'
 import pkg from './package.json'
+// SvgIcon插件
+import { svgBuilder } from './src/plugins/svgBuilder'
 
 // css原子化：https://cn.windicss.org/guide/
 import WindiCSS from 'vite-plugin-windicss'
@@ -89,6 +91,13 @@ export default defineConfig(({ mode }) => {
        */
       alias: {
         '@': sourceDir,
+        // "@": fileURLToPath(new URL("./src", import.meta.url)),
+        '@img': resolve('src/assets/img'),
+        '@cp': resolve('src/components'),
+        // 兼容webpack的静态资源
+        '~@': resolve('src'),
+        '~@img': resolve('src/assets/img'),
+        '~@cp': resolve('src/components'),
       },
     },
 
@@ -130,6 +139,7 @@ export default defineConfig(({ mode }) => {
           },
         ],
       }),
+      svgBuilder('./src/assets/icons/svg/'), // 导入所有svg
       WindiCSS(),
       // 开启Gzip压缩
       viteCompression({
