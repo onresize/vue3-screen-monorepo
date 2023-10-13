@@ -39,7 +39,7 @@
     "yorkie": "^2.0.0"
   },
   "gitHooks": {
-    "pre-commit111": "yorkie pre-commit"
+    "pre-commit": "yorkie pre-commit"
   },
   "lint-staged": {
     "*.{js,ts,jsx,vue,tsx}": [
