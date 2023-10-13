@@ -21,6 +21,7 @@
   "author": "",
   "license": "MIT",
   "workspaces": [
+    "comLibrary",
     "webPackages",
     "components",
     "utils"

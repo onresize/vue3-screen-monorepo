@@ -25,10 +25,10 @@ const showPreview = (picArr) => {
         :src="logo"
         @click.stop="showPreview(logo)"
       />
-      <!-- <ToggleTheme /> -->
+      <ToggleTheme />
       <el-button @click="Router.push({ name: 'page1' })">跳转page1</el-button>
-      <!-- <svg-icon name="bug" /> -->
-      <!-- <HelloWorld /> -->
+      <svg-icon name="bug" />
+      <HelloWorld />
     </div>
   </div>
 </template>

@@ -36,7 +36,7 @@
     "@LT/utils": "workspace:^",
     "@element-plus/icons-vue": "^2.1.0",
     "@vitejs/plugin-vue": "^4.1.0",
-    "element-plus": "^2.3.6",
+    "element-plus": "file:..\\..\\comLibrary\\element-plus.tar.gz",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",

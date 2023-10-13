@@ -32,6 +32,7 @@ http {
 ### 项目文件目录说明
 
 - components: 公共的、可单独抽离的(不需要依赖状态的)、所有项目使用的公共的组件
+- comLibrary: 公用组件库压缩包
 - utils: 公共的函数工具方法
 - webPackages: 所有前端项目存储在该文件夹下
 - 项目中 components/AutoImportCom 文件夹下定义的组件会自动引入、ElemPlus相关也会自动引入
@@ -54,6 +55,7 @@ check-conflict // 提交代码预检测是否有多人开发代码冲突
 基于 pnpm 提供的 workspace:协议，可以方便的在 webPackages 内部进行互相引用
 例： pnpm i echarts --filter vue3-screen-template 	
 	pnpm uninstall echarts --filter vue3-screen-template 
+    pnpm install element-plus ../../comLibrary/element-plus.tar.gz --filter vue3-screen-template -D
 
 # 子项目安装公用包、找到共用部分的package.json下的name
 tools 和 components下的 package.json 配置 "private": true私有化
