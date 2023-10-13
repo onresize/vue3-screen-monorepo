@@ -10,6 +10,7 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import viteCompression from 'vite-plugin-compression'
 import vitePluginCDN from 'vite-plugin-cdn-import'
 import viteImagemin from 'vite-plugin-imagemin'
+import vueJsx from '@vitejs/plugin-vue-jsx'
 import { envDir, sourceDir, manualChunks } from './scripts/build'
 import pkg from './package.json'
 // SvgIcon插件
