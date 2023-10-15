@@ -1,7 +1,6 @@
 <script setup name="home">
 import { getCurrentInstance } from 'vue'
 import { useRouter } from 'vue-router'
-import renderJsxDom from '@cp/jsx/renderJsxDom.jsx'
 import logo from '@/assets/img/logo.png'
 
 const { proxy } = getCurrentInstance()
@@ -14,10 +13,6 @@ const showPreview = (picArr) => {
     infinite: true,
     hideOnClickModal: false,
   })
-}
-
-const myClick = (num) => {
-  console.log('接收到JSX子组件传过来的值', num)
 }
 </script>
 
@@ -32,10 +27,8 @@ const myClick = (num) => {
       />
       <!-- <ToggleTheme /> -->
       <el-button @click="Router.push({ name: 'page1' })">跳转page1</el-button>
-      <svg-icon name="bug" />
-      <HelloWorld />
-      <!-- jsx组件 -->
-      <!-- <renderJsxDom title="jsx通过props传参" @myClick="myClick"></renderJsxDom> -->
+      <!-- <svg-icon name="bug" /> -->
+      <!-- <HelloWorld /> -->
     </div>
   </div>
 </template>

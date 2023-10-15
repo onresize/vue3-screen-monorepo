@@ -23,18 +23,29 @@ const key = computed(() => `${String(route.name || route.path)}-${new Date()}`)
 
   .header {
     width: 100%;
-    height: 100px;
-    border: 10px solid green;
-    // cursor: -webkit-zoom-in;
+    height: 98px;
+    // border: 1px solid green;
     position: relative;
     z-index: 10;
+    background: url('@img/zhts/taitou.png') no-repeat center;
+    background-size: 100% 100%;
   }
 
   .content {
     width: 100%;
-    flex: 1;
-    border: 10px solid red;
+    flex: 0.985;
+    box-sizing: border-box;
+    // border: 2px solid red;
     position: relative;
+    top: 13px;
+  }
+
+  .infoOpt {
+    opacity: 0;
+  }
+
+  .activeOpt {
+    opacity: 1;
   }
 }
 </style>

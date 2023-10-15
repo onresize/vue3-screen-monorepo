@@ -12,7 +12,7 @@ const { message, onlyRunOnce, num } = storeToRefs(store)
 const iptData = ref('我是被复制的内容 🍒 🍉 🍊')
 
 onceFunc(() => {
-  store.updateOnlyRunOnceSync(true)
+  store.changeOnlyRunOnce_Sync(true)
   ElNotification({
     title: getTimeState(),
     message: '欢迎登录 vue3-screen-template',
@@ -35,7 +35,7 @@ getList()
 
   <pButton>公共按钮组件</pButton>
 
-  <blockquote @click="store.updateNumSync">
+  <blockquote @click="store.changeNum_Sync">
     <p>{{ message + '：' + num }}</p>
   </blockquote>
 </template>

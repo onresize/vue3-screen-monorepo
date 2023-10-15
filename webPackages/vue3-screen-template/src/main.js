@@ -6,9 +6,6 @@ import router from '@/router'
 // 引入全局适配函数
 import { AutoFit } from '@LT/utils'
 
-// 引入全局工具函数
-import utilsFunc from '@/utils/tools'
-
 // 初始化连接socket
 import { WebSocketUtil } from '@/utils/UE_Connect/ue-connect'
 
@@ -29,6 +26,8 @@ import 'element-plus/dist/index.css'
 
 // 引入自定义指令
 import directives from './directives'
+// 注册插件
+import plugins from '@/plugins'
 
 // 引入全局图片预览组件
 import ImageViewer from '@/components/ImageViewer/index'
@@ -49,8 +48,9 @@ WebSocketUtil()
 
 app.component('svg-icon', SvgIcon)
 
-app.use(utilsFunc)
 app.use(pinia)
+app.use(plugins)
+app.use(ImageViewer)
 
 // 引入所有svg
 void (() => {
@@ -60,6 +60,6 @@ void (() => {
   })
 })()
 
-app.use(directives, app).use(ImageViewer).use(router).mount('#app')
+app.use(directives, app).use(router).mount('#app')
 
 window.vueVm = app

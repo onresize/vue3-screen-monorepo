@@ -1,3 +1,12 @@
+/*
+ * @Author: Embrance-T 2069814988@qq.com
+ * @Date: 2023-10-12 19:25:44
+ * @LastEditTime: 2023-10-12 21:29:33
+ * @LastEditors: Embrance-T 2069814988@qq.com
+ * @Description:
+ * @FilePath: \shangrao-school-vue\webPackages\ShangRaoSchoolVUE\vite.config.js
+ * 可以输入预定的版权声明、个性签名、空行等
+ */
 import { defineConfig, loadEnv } from 'vite'
 import path from 'path'
 import vue from '@vitejs/plugin-vue'
@@ -10,7 +19,6 @@ import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import viteCompression from 'vite-plugin-compression'
 import vitePluginCDN from 'vite-plugin-cdn-import'
 import viteImagemin from 'vite-plugin-imagemin'
-import vueJsx from '@vitejs/plugin-vue-jsx'
 import { envDir, sourceDir, manualChunks } from './scripts/build'
 import pkg from './package.json'
 // SvgIcon插件
@@ -32,7 +40,7 @@ export default defineConfig(({ mode }) => {
     envDir, // 管理环境变量的配置文件存放目录
     base: env.VITE_DEPLOY_BASE_URL,
     server: {
-      port: 3079,
+      port: 3080,
       proxy: {
         '/baseApi': {
           target: env.VITE_APP_BASE_API_URL,
@@ -131,17 +139,18 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       // 配置CDN
-      vitePluginCDN({
-        modules: [
-          {
-            name: 'element-plus',
-            var: 'ElementPlus',
-            path: 'https://unpkg.zhimg.com/element-plus@2.3.6/dist/index.full.js',
-          },
-        ],
-      }),
-      svgBuilder('./src/assets/icons/svg/'), // 导入所有svg
+      // vitePluginCDN({
+      //   modules: [
+      //     {
+      //       name: 'element-plus',
+      //       var: 'ElementPlus',
+      //       path: 'https://cdn.jsdelivr.net/npm/element-plus@2.3.14/dist/index.full.min.js',
+      //     },
+      //   ],
+      // }),
       WindiCSS(),
+      // 导入所有svg
+      svgBuilder('./src/assets/icons/svg/'),
       // 开启Gzip压缩
       viteCompression({
         verbose: true, // 是否在控制台输出压缩结果
@@ -150,7 +159,7 @@ export default defineConfig(({ mode }) => {
         algorithm: 'gzip', // 压缩算法,可选 [ 'gzip' , 'brotliCompress' ,'deflate' , 'deflateRaw']
         ext: '.gz', //文件后缀
       }),
-      // name 可以写在 script 标签上
+      // name 写在 script 标签上
       VueSetupExtend(),
       // 本地和后端调试注释下面配置、或更改配置
       viteMockServe({
@@ -229,17 +238,18 @@ export default defineConfig(({ mode }) => {
       /**
        * 为入口文件增加 EJS 模版能力 | 注入变量到html文件
        * @see https://github.com/vbenjs/vite-plugin-html/blob/main/README.zh_CN.md
+       * 这里使用会导致其他的html静态页面地址栏访问匹配到404路由（注释后能正常访问其他html）
        */
-      createHtmlPlugin({
-        minify: true,
-        inject: {
-          data: {
-            appTitle: env.VITE_APP_TITLE,
-            appDesc: env.VITE_APP_DESC,
-            appKeywords: env.VITE_APP_KEYWORDS,
-          },
-        },
-      }),
+      // createHtmlPlugin({
+      //   minify: true,
+      //   inject: {
+      //     data: {
+      //       appTitle: env.VITE_APP_TITLE,
+      //       appDesc: env.VITE_APP_DESC,
+      //       appKeywords: env.VITE_APP_KEYWORDS,
+      //     },
+      //   },
+      // }),
     ],
   }
 })

@@ -7,15 +7,21 @@ const state = reactive({
   rightActive: true,
   bottomActive: true,
 })
+
 onMounted(() => {
   setTimeout(() => {
     state.showAnimation = true
-  }, 200)
+  }, 0.2e3)
 })
 </script>
 
 <template>
-  <div class="page-container-box">
+  <div
+    :class="[
+      'page-container-box',
+      state.showAnimation ? 'activeOpt' : 'infopOpt',
+    ]"
+  >
     <!-- XXX左 -->
     <div
       :class="[
@@ -29,6 +35,7 @@ onMounted(() => {
 
     <!-- XXX中上、非头部 -->
     <div
+      v-if="false"
       :class="[
         'page-container-center-top',
         state.showAnimation ? 'active' : '',
@@ -39,6 +46,7 @@ onMounted(() => {
 
     <!-- XXX中下 -->
     <div
+      v-if="false"
       :class="[
         'page-container-center-bottom',
         state.showAnimation ? 'active' : '',
@@ -61,14 +69,25 @@ onMounted(() => {
 </template>
 
 <style scoped lang="less">
+.activeOpt {
+  opacity: 1;
+}
+
+.infopOpt {
+  opacity: 0;
+}
+
 .page-container-box {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background: url('@img/common/kejikuang.png') no-repeat center;
+  background-size: 100% 100%;
+  transition: opacity 1.7s linear;
 
   .page-container-content {
-    border: 5px solid black;
-    width: 377px;
+    border: 1px solid pink;
+    width: 319px;
     box-sizing: border-box;
     position: absolute;
     z-index: 10;
@@ -77,18 +96,17 @@ onMounted(() => {
     padding: 20px;
     display: flex;
     justify-content: center;
-    // cursor: grab;
 
     &.page-container-left {
       left: 0;
-      top: 30px;
+      top: 0;
       transform: translateX(-110%);
       transition: all 1s;
     }
 
     &.page-container-right {
       right: 0;
-      top: 30px;
+      top: 0;
       transform: translateX(110%);
       transition: all 1s;
     }
@@ -100,7 +118,7 @@ onMounted(() => {
   }
 
   .page-container-center-top {
-    border: 5px solid greenyellow;
+    border: 1px solid red;
     position: absolute;
     top: 30px;
     left: 50%;
@@ -119,7 +137,7 @@ onMounted(() => {
   }
 
   .page-container-center-bottom {
-    border: 5px solid green;
+    border: 1px solid yellow;
     width: 100%;
     height: 100px;
     position: absolute;
@@ -131,7 +149,6 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    // cursor: -webkit-zoom-out;
 
     &.active {
       transform: translateY(0%) !important;

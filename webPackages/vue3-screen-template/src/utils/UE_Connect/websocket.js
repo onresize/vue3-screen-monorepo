@@ -164,12 +164,12 @@ let websocket = {
           break
 
         /*
-								case "ACKWebRTCProxyState":
-									console.log("WebRTCProxy is Connected:" + usefulValue.argString);
-									XR.DebugToHtml("WebRTCProxy is Connected: " + usefulValue.argString);
-									websocket.onWebRTCProxyState(usefulValue.argString);
-									break;
-								*/
+                case "ACKWebRTCProxyState":
+                  console.log("WebRTCProxy is Connected:" + usefulValue.argString);
+                  XR.DebugToHtml("WebRTCProxy is Connected: " + usefulValue.argString);
+                  websocket.onWebRTCProxyState(usefulValue.argString);
+                  break;
+                */
 
         case 'TransmitMessage':
           //console.log(usefulValue.argString);
@@ -192,11 +192,11 @@ let websocket = {
           )
           break
         /*
-												case "ToH5Message":
-													console.log("ToH5Message++++++++++++++++++++++++++");
-													websocket.onDefaultMessage(usefulValue.argString, messagePayloadJsonData);
-													break;
-								*/
+                        case "ToH5Message":
+                          console.log("ToH5Message++++++++++++++++++++++++++");
+                          websocket.onDefaultMessage(usefulValue.argString, messagePayloadJsonData);
+                          break;
+                */
         default:
           //console.log("onDefaultMessage++++++++++++++++++++++++++");
           websocket.onDefaultMessage(
@@ -293,7 +293,7 @@ let webrtc = {
         console.log('webrtc.playerId ' + webrtc.playerId)
         setTimeout(() => {
           webrtc.SendVideoQualityMessage('high')
-        }, 1000)
+        }, 1e3)
         break
       case 'answer':
         webrtc.onWebRtcAnswer(jsonData)

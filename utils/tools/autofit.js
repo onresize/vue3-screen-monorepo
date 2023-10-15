@@ -90,8 +90,8 @@ function offelRectification() {
 }
 function keepFit(dw, dh, dom) {
   // 获取真实视口尺寸
-  let clientWidth = document.documentElement.clientWidth; // 2304
-  let clientHeight = document.documentElement.clientHeight; // 1301
+  let clientWidth = document.documentElement.clientWidth; // 1920
+  let clientHeight = document.documentElement.clientHeight; // 985
   // 计算缩放比例、y缩放比小于1、赋默认值
   let clientH = clientHeight / dh;
   currScale = `${[clientWidth / dw, clientH]}`;

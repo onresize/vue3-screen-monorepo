@@ -25,4 +25,4 @@ iconList = iconList.filter((v) => !iconWhiteList.includes(v))
 
 // console.log("本地图片svg：", iconList);
 
-store.changeSvgList(iconList)
+store.changeSvgList_Sync(iconList)
