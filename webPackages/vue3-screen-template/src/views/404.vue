@@ -1,78 +1,9 @@
-<template>
-  <div class="box-404">
-    <div class="erro404">
-      <div class="wrapper">
-        <h3>糟糕！</h3>
-        <span>我们似乎无法找到您要找的页面。</span>
-        <p class="woapper_title">问题可能是：</p>
-        <p class="woapper_text">1、该页面不存在</p>
-        <p class="woapper_text">2、您无权访问此页面</p>
-        <label>错误代码：404</label>
-        <div class="woapper_content">
-          <p>页面将在</p>
-          <div id="counter">
-            {{ restTime }}
-          </div>
-          <p>
-            <b>s</b>
-            后自动跳转到
-            <a href="/" target="_self">首页</a>
-          </p>
-          <p style="text-align: left; width: 100%">
-            如果长时间没有跳转请手动点击
-            <a href="/" target="_self">首页</a>
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="rail">
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-      <div class="stamp four">4</div>
-      <div class="stamp zero">0</div>
-    </div>
-    <div class="world">
-      <div class="forward">
-        <div class="box">
-          <div class="wall"></div>
-          <div class="wall"></div>
-          <div class="wall"></div>
-          <div class="wall"></div>
-          <div class="wall"></div>
-          <div class="wall"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script setup name="NotFound">
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { useRouter } from 'vue-router'
-
 const Router = useRouter()
 
 const totalTime = ref(-550)
 const clearInte = ref(false)
 const restTime = ref(10)
-
-window.localStorage.clear()
 
 const fnSetInterval = () => {
   let clock = window.setInterval(() => {
@@ -85,12 +16,10 @@ const fnSetInterval = () => {
         if (clearInte.value) {
           return false
         }
-        Router.push({
-          path: '/',
-        })
-      }, 500)
+        Router.push('/')
+      }, 0.5e3)
     }
-  }, 1000)
+  }, 1e3)
 }
 
 onBeforeUnmount(() => {
@@ -102,12 +31,70 @@ onMounted(() => {
 })
 </script>
 
-<style lang="less" scoped>
+<template>
+  <div>
+    <div class="wrapper">
+      <div class="content_box">
+        <p>页面将在</p>
+        <div id="counter_num">
+          {{ restTime }}
+        </div>
+        <p>
+          <b>s</b>
+          后自动跳转到
+          <u><a href="/" target="_self">首页</a></u>
+        </p>
+      </div>
+    </div>
+    <div class="box-404">
+      <div class="erro404"></div>
+      <div class="rail">
+        <div class="stamp four">4</div>
+        <div class="stamp zero">0</div>
+        <div class="stamp four">4</div>
+        <div class="stamp zero">0</div>
+        <div class="stamp four">4</div>
+        <div class="stamp zero">0</div>
+        <div class="stamp four">4</div>
+        <div class="stamp zero">0</div>
+        <div class="stamp four">4</div>
+        <div class="stamp zero">0</div>
+        <div class="stamp four">4</div>
+        <div class="stamp zero">0</div>
+        <div class="stamp four">4</div>
+        <div class="stamp zero">0</div>
+        <div class="stamp four">4</div>
+        <div class="stamp zero">0</div>
+        <div class="stamp four">4</div>
+        <div class="stamp zero">0</div>
+        <div class="stamp four">4</div>
+        <div class="stamp zero">0</div>
+      </div>
+      <div class="world">
+        <div class="forward">
+          <div class="box">
+            <div class="wall"></div>
+            <div class="wall"></div>
+            <div class="wall"></div>
+            <div class="wall"></div>
+            <div class="wall"></div>
+            <div class="wall"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped lang="less">
 .box-404 {
   background: #000;
   position: fixed;
   width: 100%;
-  height: calc(100vh - 162px);
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden hidden;
+  z-index: 20;
   overflow: hidden;
   display: flex;
   font-family: 'Anton', sans-serif;
@@ -490,23 +477,6 @@ onMounted(() => {
   -o-transform: translateX(-50%);
   transform: translateX(-45%);
   z-index: 9999;
-
-  .wrapper {
-    width: 1200px;
-    margin: 0 auto;
-    color: rgba(255, 255, 255, 0.5);
-
-    .woapper_title {
-      padding: 0;
-    }
-
-    .woapper_text {
-      font-size: 16px;
-      color: #f00;
-      font-weight: bold;
-      padding: 0;
-    }
-  }
 }
 
 .erro404 img {
@@ -567,61 +537,50 @@ onMounted(() => {
   text-decoration: underline;
 }
 
-.woapper_content {
-  overflow: hidden;
-  margin-left: 670px;
-  font-size: 20px;
-  font-weight: bold;
+.wrapper {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  // border: 2px solid red;
+  color: rgba(255, 255, 255, 0.5);
 
-  p {
-    float: left;
-    margin: 35px 20px 0;
+  .content_box {
+    overflow: hidden;
+    font-weight: bold;
+    margin: auto;
+    padding: 10px;
+    // border: 2px solid yellow;
+    display: flex;
 
-    &:first-child {
-      margin-left: 0;
-    }
+    p {
+      font-size: 20px;
+      margin: 35px 20px 0;
 
-    & > a {
-      cursor: pointer;
+      &:first-child {
+        margin-left: 0;
+      }
+
+      a {
+        font-family: 'ASB';
+        color: #3dbcc6;
+        cursor: pointer;
+      }
     }
   }
-}
 
-#counter {
-  float: left;
-  display: inline-block;
-  margin-top: 20px;
-  background-color: #222;
-  width: 54px;
-  height: 59px;
-  line-height: 59px;
-  text-align: center;
-  border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -opera-border-radius: 3px;
-  -moz-border-radius: 3px;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: 'LT';
-  font-size: 26px;
-}
-
-#counter_item1 {
-  margin-left: 2px;
-}
-
-.counter_item {
-  width: 30px;
-  height: 55px;
-  overflow: hidden;
-  float: left;
-  margin-top: 2px;
-}
-
-.counter_item .digit,
-.counter_item .front {
-  width: 30px;
-  height: 55px;
-  overflow: hidden;
+  #counter_num {
+    width: 54px;
+    height: 59px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    font-family: 'LT';
+    font-size: 26px;
+    background-color: #222;
+  }
 }
 </style>

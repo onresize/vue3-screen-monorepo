@@ -1,6 +1,4 @@
 <script setup name="MyImageViewer">
-import { ref, reactive } from 'vue'
-
 let urlList = ref([])
 let isShow = ref(false)
 let options = reactive({

@@ -1,4 +1,3 @@
-import { createApp } from 'vue'
 import MyImageViewer from './index.vue'
 
 const app = createApp(MyImageViewer)

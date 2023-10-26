@@ -1,1 +1,0 @@
-在源码仓库下pnpm build后在dist文件夹下执行命令（将element-plus打包成element-plus.tar.gz）：  tar zcvf element-plus.tar.gz -C ./element-plus .

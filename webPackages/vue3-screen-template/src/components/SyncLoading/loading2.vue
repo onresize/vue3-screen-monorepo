@@ -1,6 +1,6 @@
 <template>
-  <div class="loading" data-v-705baa5f="" data-v-76a435ee="">
-    <div class="loader" data-v-705baa5f=""></div>
+  <div class="loading">
+    <div class="loader"></div>
   </div>
 </template>
 

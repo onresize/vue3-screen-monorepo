@@ -1,4 +1,4 @@
-// import loadingGif from '@/assets/lazyPic/loading1.gif'
+// import loadingGif from 'xxx'
 
 // 图片懒加载
 const lazy = {
@@ -25,7 +25,7 @@ const lazy = {
           el.style.height = '100%'
           // 停止观察、防止重复加载相同图片
           observer.unobserve(el)
-        }, 1000)
+        }, 1e3)
       }
     })
     // 开始观察

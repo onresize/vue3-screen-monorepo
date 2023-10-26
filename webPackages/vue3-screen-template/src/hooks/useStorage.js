@@ -1,4 +1,3 @@
-import { ref } from 'vue'
 import { LocalStorage, SessionStorage } from '@bassist/utils'
 import { STORAGE_PREFIX } from '@/constants'
 

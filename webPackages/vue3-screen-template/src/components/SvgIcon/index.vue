@@ -1,14 +1,3 @@
-<template>
-  <svg
-    :class="svgClass"
-    aria-hidden="true"
-    v-on="$attrs"
-    :style="{ color: props.color }"
-  >
-    <use :xlink:href="iconName" />
-  </svg>
-</template>
-
 <script setup name="SvgIcon">
 /**
  * 名称：SvgIcon
@@ -16,7 +5,6 @@
  * 使用方式：
  * 在 template 中使用 <svg-icon name="bug"/>
  */
-import { computed } from 'vue'
 
 const props = defineProps(['name', 'className', 'color'])
 // console.log('当前props：', props)
@@ -29,6 +17,17 @@ const svgClass = computed(() => {
   }
 })
 </script>
+
+<template>
+  <svg
+    :class="svgClass"
+    aria-hidden="true"
+    v-on="$attrs"
+    :style="{ color: props.color }"
+  >
+    <use :xlink:href="iconName" />
+  </svg>
+</template>
 
 <style scoped>
 .svg-icon {

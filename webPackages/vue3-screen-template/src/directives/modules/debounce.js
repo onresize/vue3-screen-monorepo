@@ -15,7 +15,7 @@ const debounce = {
       }
       timer = setTimeout(() => {
         binding.value()
-      }, 500)
+      }, 0.5e3)
     }
     el.addEventListener('click', el.__handleClick__)
   },

@@ -5,8 +5,21 @@ import { awaitTo } from '@LT/utils'
 export const getTableList = () => {
   return awaitTo(
     request({
-      url: '/vueApi/table/list',
+      url: '/baseApi/table/list',
       method: 'GET',
+    })
+  )
+}
+
+export const login = (data) => {
+  return awaitTo(
+    request({
+      url: '/baseApi/login',
+      method: 'POST',
+      // headers: {
+      //   'Content-Type': 'multipart/form-data',
+      // },
+      data,
     })
   )
 }

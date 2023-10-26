@@ -1,6 +1,4 @@
 <script setup>
-import { ref } from 'vue'
-import { storeToRefs } from 'pinia'
 import { useMessageStore } from '@/stores'
 import { getTimeState, onceFunc } from '@LT/utils'
 import { pButton } from '@LT/components'
@@ -12,10 +10,10 @@ const { message, onlyRunOnce, num } = storeToRefs(store)
 const iptData = ref('我是被复制的内容 🍒 🍉 🍊')
 
 onceFunc(() => {
-  store.updateOnlyRunOnceSync(true)
+  store.changeOnlyRunOnce_Sync(true)
   ElNotification({
     title: getTimeState(),
-    message: '欢迎登录 vue3-screen-template',
+    message: '欢迎登录',
     type: 'success',
     duration: 3000,
   })
@@ -30,14 +28,15 @@ getList()
 </script>
 
 <template>
-  <el-input class="!w-200px my-10px" v-model="iptData"></el-input>
-  <el-button v-copy="iptData">复制</el-button>
+  <div>
+    <el-button v-copy="iptData">复制</el-button>
 
-  <pButton>公共按钮组件</pButton>
+    <pButton>公共按钮组件</pButton>
 
-  <blockquote @click="store.updateNumSync">
-    <p>{{ message + '：' + num }}</p>
-  </blockquote>
+    <blockquote @click="store.changeNum_Sync">
+      <p>{{ message + '：' + num }}</p>
+    </blockquote>
+  </div>
 </template>
 
 <style lang="less" scoped>

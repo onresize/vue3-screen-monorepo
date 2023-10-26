@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import { isDark as isDarkMode } from '@bassist/utils'
 import { useStorage } from '@/hooks'
 

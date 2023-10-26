@@ -1,18 +1,31 @@
+/*
+ * @Author: Embrance-T 2069814988@qq.com
+ * @Date: 2023-10-12 19:25:44
+ * @LastEditTime: 2023-10-12 21:29:33
+ * @LastEditors: Embrance-T 2069814988@qq.com
+ * @Description:
+ * @FilePath: \shangrao-school-vue\webPackages\ShangRaoSchoolVUE\vite.config.js
+ * 可以输入预定的版权声明、个性签名、空行等
+ */
 import { defineConfig, loadEnv } from 'vite'
 import path from 'path'
+import { fileURLToPath, URL } from 'url'
 import vue from '@vitejs/plugin-vue'
 import components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import banner from 'vite-plugin-banner'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import VueSetupExtend from 'vite-plugin-vue-setup-extend'
 import viteCompression from 'vite-plugin-compression'
 import vitePluginCDN from 'vite-plugin-cdn-import'
 import viteImagemin from 'vite-plugin-imagemin'
-import vueJsx from '@vitejs/plugin-vue-jsx'
+import { config } from './scripts/autoImportConfig'
 import { envDir, sourceDir, manualChunks } from './scripts/build'
 import pkg from './package.json'
+import {
+  createStyleImportPlugin,
+  VxeTableResolve,
+} from 'vite-plugin-style-import'
 // SvgIcon插件
 import { svgBuilder } from './src/plugins/svgBuilder'
 
@@ -32,7 +45,7 @@ export default defineConfig(({ mode }) => {
     envDir, // 管理环境变量的配置文件存放目录
     base: env.VITE_DEPLOY_BASE_URL,
     server: {
-      port: 3079,
+      port: 3080,
       proxy: {
         '/baseApi': {
           target: env.VITE_APP_BASE_API_URL,
@@ -100,6 +113,7 @@ export default defineConfig(({ mode }) => {
         '~@img': resolve('src/assets/img'),
         '~@cp': resolve('src/components'),
       },
+      extensions: ['.js', '.jsx', '.json', '.vue'], // 引入文件可不写对应后缀
     },
 
     css: {
@@ -131,17 +145,18 @@ export default defineConfig(({ mode }) => {
     plugins: [
       vue(),
       // 配置CDN
-      vitePluginCDN({
-        modules: [
-          {
-            name: 'element-plus',
-            var: 'ElementPlus',
-            path: 'https://unpkg.zhimg.com/element-plus@2.3.6/dist/index.full.js',
-          },
-        ],
-      }),
-      svgBuilder('./src/assets/icons/svg/'), // 导入所有svg
+      // vitePluginCDN({
+      //   modules: [
+      //     {
+      //       name: 'element-plus',
+      //       var: 'ElementPlus',
+      //       path: 'https://cdn.jsdelivr.net/npm/element-plus@2.3.14/dist/index.full.min.js',
+      //     },
+      //   ],
+      // }),
       WindiCSS(),
+      // 导入所有svg
+      svgBuilder('./src/assets/icons/svg/'),
       // 开启Gzip压缩
       viteCompression({
         verbose: true, // 是否在控制台输出压缩结果
@@ -150,19 +165,19 @@ export default defineConfig(({ mode }) => {
         algorithm: 'gzip', // 压缩算法,可选 [ 'gzip' , 'brotliCompress' ,'deflate' , 'deflateRaw']
         ext: '.gz', //文件后缀
       }),
-      // name 可以写在 script 标签上
+      // name 写在 script 标签上
       VueSetupExtend(),
       // 本地和后端调试注释下面配置、或更改配置
-      viteMockServe({
-        mockPath: './mock/source/', // 解析，路径可根据实际变动
-        localEnabled: true, // 此处可以手动设置为true，也可以根据官方文档格式 开发环境
-        prodEnabled: true, // 生产环境设为true，也可以根据官方文档格式
-        injectCode: ` import { mockXHR } from './mock';
-        mockXHR(); `,
-        logger: true, //是否在控制台显示请求日志
-        watchFiles: false, // 监听文件内容变更
-        injectFile: resolve(__dirname, 'src/main.js'), // 在main.js注册后需要在此处注入，否则可能报找不到setupProdMockServer的错误
-      }),
+      // viteMockServe({
+      //   mockPath: './mock/source/', // 解析，路径可根据实际变动
+      //   localEnabled: true, // 此处可以手动设置为true，也可以根据官方文档格式 开发环境
+      //   prodEnabled: true, // 生产环境设为true，也可以根据官方文档格式
+      //   injectCode: ` import { mockXHR } from './mock';
+      //   mockXHR(); `,
+      //   logger: true, //是否在控制台显示请求日志
+      //   watchFiles: false, // 监听文件内容变更
+      //   injectFile: resolve(__dirname, 'src/main.js'), // 在main.js注册后需要在此处注入，否则可能报找不到setupProdMockServer的错误
+      // }),
       // 图片压缩、更多配置： https://github.com/vbenjs/vite-plugin-imagemin
       viteImagemin({
         gifsicle: {
@@ -196,50 +211,41 @@ export default defineConfig(({ mode }) => {
        * 并在这里添加一个插件导入 `import vueJsx from '@vitejs/plugin-vue-jsx'`
        */
       // vueJsx(),
-      // 自动引入element相关
+      // 自动引入相关Api
       AutoImport({
+        imports: ['vue', 'vue-router', 'pinia'],
+        eslintrc: {
+          enabled: false,
+        },
         resolvers: [ElementPlusResolver()],
       }),
       /**
-       * src/components/AutoImportCom文件夹下的组件自动导入，不用每次都 import
+       * 对应文件夹下的组件自动导入，不用每次都 import
        * @see https://github.com/antfu/unplugin-vue-components#configuration
        */
       components({
-        dirs: ['src/components/AutoImportCom'],
-        directoryAsNamespace: true,
-        collapseSamePrefixes: true,
-        globalNamespaces: [],
-        extensions: ['vue', 'js', 'jsx'],
-        deep: true,
-        dts: false,
-        resolvers: [ElementPlusResolver()],
+        ...config,
+        resolvers: [ElementPlusResolver()], // ElementPlus按需加载
       }),
-      // 版权信息
-      banner(
-        [
-          `/**`,
-          ` * name: ${pkg.name}`,
-          ` * version: v${pkg.version}`,
-          ` * description: ${pkg.description}`,
-          ` * author: ${pkg.author}`,
-          ` */`,
-        ].join('\n')
-      ),
-
+      // 按需加载vxe-table
+      createStyleImportPlugin({
+        resolves: [VxeTableResolve()],
+      }),
       /**
        * 为入口文件增加 EJS 模版能力 | 注入变量到html文件
        * @see https://github.com/vbenjs/vite-plugin-html/blob/main/README.zh_CN.md
+       * 这里使用会导致其他的html静态页面地址栏访问匹配到404路由（注释后能正常访问其他html）
        */
-      createHtmlPlugin({
-        minify: true,
-        inject: {
-          data: {
-            appTitle: env.VITE_APP_TITLE,
-            appDesc: env.VITE_APP_DESC,
-            appKeywords: env.VITE_APP_KEYWORDS,
-          },
-        },
-      }),
+      // createHtmlPlugin({
+      //   minify: true,
+      //   inject: {
+      //     data: {
+      //       appTitle: env.VITE_APP_TITLE,
+      //       appDesc: env.VITE_APP_DESC,
+      //       appKeywords: env.VITE_APP_KEYWORDS,
+      //     },
+      //   },
+      // }),
     ],
   }
 })

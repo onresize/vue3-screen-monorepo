@@ -104,7 +104,7 @@ let websocket = {
       console.log(e)
       setTimeout(function () {
         XR.ConnectWebSocket(inMasterServer, port)
-      }, 500)
+      }, 0.5e3)
       return
     }
 
@@ -125,12 +125,12 @@ let websocket = {
       console.log('重试链接')
       setTimeout(function () {
         XR.ConnectWebSocket(websocket.targetServer, port)
-      }, 2000)
+      }, 2e3)
     }
 
     setTimeout(function () {
       XR.ConnectWebSocket(websocket.targetServer, port)
-    }, 500)
+    }, 0.5e3)
   },
   ConnectWebSocket: function (ipString = '127.0.0.1', port = '23456') {
     websocket.ws = new WebSocket('ws://' + ipString + ':' + port + '/')
@@ -251,11 +251,11 @@ let websocket = {
           )
           break
         /*
-				case "ToH5Message":
-					console.log("ToH5Message++++++++++++++++++++++++++");
-					websocket.onDefaultMessage(usefulValue.argString, messagePayloadJsonData);
-					break;
-*/
+                case "ToH5Message":
+                  console.log("ToH5Message++++++++++++++++++++++++++");
+                  websocket.onDefaultMessage(usefulValue.argString, messagePayloadJsonData);
+                  break;
+        */
         case 'JsRun':
           eval(usefulValue.argString)
           break
@@ -362,7 +362,7 @@ let webrtc = {
         console.log('webrtc.playerId ' + webrtc.playerId)
         setTimeout(() => {
           webrtc.SendVideoQualityMessage('high')
-        }, 1000)
+        }, 1e3)
         break
       case 'answer':
         webrtc.onWebRtcAnswer(jsonData)

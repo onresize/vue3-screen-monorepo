@@ -1,85 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- 清理缓存 -->
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-control" content="no-cache" />
+    <meta http-equiv="Cache" content="no-cache" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/assets/css/index.css" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, minimal-ui, viewport-fit=cover"
+    />
+    <!-- <%= appTitle %> -->
+    <title>智慧校园</title>
+    <!--[if lt IE 11
+      ]><script>
+        window.location.href = '/assets/html/ie.html'
+      </script><!
+    [endif]-->
+    <meta name="description" content="<%= appDesc %>" />
+    <meta name="keywords" content="<%= appKeywords %>" />
+    <script src="/NoDebuger.js"></script>
+    <style>
+      root {
+        margin: 0;
+        padding: 0;
+        outline: none;
+        border: none;
+        box-sizing: border-box;
+      }
 
-<head>
-  <meta charset="UTF-8" />
-  <!-- 清理缓存 -->
-  <meta http-equiv="Expires" content="0" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Cache-control" content="no-cache" />
-  <meta http-equiv="Cache" content="no-cache" />
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="stylesheet" href="/assets/css/index.css">
-  <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, minimal-ui, viewport-fit=cover" />
-  <title>
-    <%= appTitle %>
-  </title>
-  <meta name="description" content="<%= appDesc %>" />
-  <meta name="keywords" content="<%= appKeywords %>" />
-  <script src="/NoDebuger.js"></script>
-  <style>
-    root {
-      margin: 0;
-      padding: 0;
-      outline: none;
-      border: none;
-      box-sizing: border-box;
-    }
+      body {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        overflow: hidden;
+        touch-action: none;
+        user-select: none;
+        -webkit-user-drag: none;
+      }
 
-    body {
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      overflow: hidden;
-      touch-action: none;
-      user-select: none;
-      -webkit-user-drag: none;
-    }
+      #player {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        display: flex;
+      }
 
-    #player {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      display: flex;
-    }
+      #app {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        /* cursor: pointer; */
+      }
 
-    #app {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      /* cursor: pointer; */
-    }
+      #UeTouch {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 222, 222, 0);
+        /* cursor: help; */
+      }
+    </style>
+  </head>
 
-    #UeTouch {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(255, 222, 222, 0);
-      /* cursor: help; */
-    }
-  </style>
-</head>
-
-<body>
-  <div id="BoDy">
-    <div id="player"></div>
-    <div id="app">
-      <div class="pLoading">
-        <div class="loader"></div>
+  <body>
+    <div id="BoDy">
+      <div id="player"></div>
+      <div id="app">
+        <div class="pLoading">
+          <div class="loader"></div>
+        </div>
       </div>
+      <div id="UeTouch"></div>
     </div>
-    <div id="UeTouch"></div>
-  </div>
 
-  <script src="/static/ue/webRtcPlayer.js"></script>
-  <script src="/static/ue/websocket.js"></script>
-  <script src="/static/ue/xrframework.js"></script>
-  <script src="/static/js/jquery-1.12.4.min.js"></script>
-  <script type="module" src="/src/main.js"></script>
-</body>
-
+    <script src="/static/js/jquery-1.12.4.min.js" async></script>
+    <script src="/static/js/auto-upgrade.js" defer></script>
+    <script src="/static/ue/webRtcPlayer.js" defer></script>
+    <script src="/static/ue/websocket.js" defer></script>
+    <script src="/static/ue/xrframework.js" defer></script>
+    <script type="module" src="/src/main.js" defer></script>
+  </body>
 </html>

@@ -1,5 +1,5 @@
 {
-  "name": "vue3-screen-monorepo",
+  "name": "vue3-screen-template",
   "version": "1.0.0",
   "description": "monorepo策略构建模板",
   "main": "index.js",
@@ -21,7 +21,6 @@
   "author": "",
   "license": "MIT",
   "workspaces": [
-    "comLibrary",
     "webPackages",
     "components",
     "utils"

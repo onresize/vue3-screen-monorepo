@@ -1,5 +1,3 @@
-import { getCurrentInstance, nextTick } from 'vue'
-
 let soundName = '',
   // 音频命名对象
   soundObj = {

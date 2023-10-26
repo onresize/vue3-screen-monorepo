@@ -23,7 +23,7 @@ const throttle = {
         binding.value()
         timer = setTimeout(() => {
           el.disabled = false
-        }, 1000)
+        }, 1e3)
       }
     }
     el.addEventListener('click', el.__handleClick__)

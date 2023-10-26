@@ -5,12 +5,13 @@ import draggable from './modules/draggable'
 import debounce from './modules/debounce'
 import throttle from './modules/throttle'
 import longpress from './modules/longpress'
-import permission from './modules/permission'
+import permission from './modules/permisson/permission'
+import hasPermi from './modules/permisson/hasPermi'
+import hasRole from './modules/permisson/hasRole'
 import lazy from './modules/lazy'
 import sound from './modules/sound'
 
 const directivesList = {
-  // Custom directives
   auth,
   copy,
   waterMarker,
@@ -19,6 +20,8 @@ const directivesList = {
   throttle,
   longpress,
   permission,
+  hasPermi,
+  hasRole,
   lazy,
   sound,
 }

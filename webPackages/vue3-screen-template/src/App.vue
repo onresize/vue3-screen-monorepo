@@ -1,10 +1,14 @@
 <script setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
 import { isMobile, watchResize } from '@bassist/utils'
 
 const route = useRoute()
 const key = computed(() => `${String(route.name || route.path)}-${new Date()}`)
+
+const commonStyles = computed(() =>
+  ['page5', 'page6', 'login', 'preLoading'].includes(route.name)
+    ? 'info_box'
+    : 'app_box'
+)
 
 watchResize(() => {
   document.body.className = `platform-${isMobile() ? 'mobile' : 'desktop'}`
@@ -12,11 +16,23 @@ watchResize(() => {
 </script>
 
 <template>
-  <router-view :key="key" class="app_box" />
+  <!-- <router-view :key="key" class="app_box" /> -->
+  <router-view :class="commonStyles" :key="key" v-slot="{ Component }">
+    <keep-alive include="">
+      <component :is="Component"></component>
+    </keep-alive>
+  </router-view>
 </template>
 
 <style>
 .app_box {
+  width: 100%;
+  height: 100%;
+  background: url('@img/common/yinying.png') no-repeat center;
+  background-size: 100% 100%;
+}
+
+.info_box {
   width: 100%;
   height: 100%;
 }

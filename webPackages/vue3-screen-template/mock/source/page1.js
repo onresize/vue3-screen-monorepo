@@ -20,7 +20,7 @@ const data = Mock.mock({
 
 export default [
   {
-    url: '/vueApi/table/list',
+    url: '/baseApi/table/list',
     method: 'get',
     // 忽略引用但没used eslint检测
     // eslint-disable-next-line
@@ -32,6 +32,18 @@ export default [
           total: items.length,
           items: items,
         },
+      }
+    },
+  },
+  {
+    url: '/baseApi/login',
+    method: 'post',
+    // eslint-disable-next-line
+    response: (config) => {
+      const body = JSON.parse(config.body)
+      return {
+        code: 20000,
+        token: 'asdkhqwoudhqoiwd8q1678923hjlkahwdoiuuwyd90yawdhalwoidh1ilh2d',
       }
     },
   },

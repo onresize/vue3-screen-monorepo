@@ -94,3 +94,39 @@ body {
     box-shadow: 0.5em 1em #3db88fbf, -0.5em -1em #e9a920bf;
   }
 }
+
+
+@font-face {
+  font-family: 'LT';
+  src: url('../fonts/LcdD.TTF');
+}
+
+@font-face {
+  font-family: 'AZ';
+  src: url('../fonts/Azonix.otf');
+}
+
+@font-face {
+  font-family: 'ASB';
+  src: url('../fonts/AlimamaShuHeiTi-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'FZZ';
+  src: url('../fonts/FZZDHJW.TTF');
+}
+
+@font-face {
+  font-family: 'PFB';
+  src: url('../fonts/PingFang Bold.ttf');
+}
+
+@font-face {
+  font-family: 'PingFang SC';
+  src: url('../fonts/PingFang Medium.ttf');
+}
+
+@font-face {
+  font-family: 'QTPS';
+  src: url('../fonts/QTypePro-SquareLight.otf');
+}

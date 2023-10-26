@@ -1,0 +1,19 @@
+{
+  "recommendations": [
+    "streetsidesoftware.code-spell-checker",
+    "equinusocio.vsc-community-material-theme",
+    "usernamehw.errorlens",
+    "dbaeumer.vscode-eslint",
+    "kisstkondoros.vscode-gutter-preview",
+    "ritwickdey.liveserver",
+    "equinusocio.vsc-material-theme-icons",
+    "equinusocio.vsc-material-theme",
+    "rvest.vs-code-prettier-eslint",
+    "vue.vscode-typescript-vue-plugin",
+    "wayou.vscode-todo-highlight",
+    "gruntfuggly.todo-tree",
+    "vscode-icons-team.vscode-icons",
+    "voorjaar.windicss-intellisense",
+    "antfu.where-am-i"
+  ]
+}

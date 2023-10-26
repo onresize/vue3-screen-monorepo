@@ -19,7 +19,7 @@ const directive = {
       if (pressTimer === null) {
         pressTimer = setTimeout(() => {
           handler(e)
-        }, 1000)
+        }, 1e3)
       }
     }
     // 取消计时器
