@@ -2,10 +2,11 @@
 
 ###  项目集成特点🔨
 
-- 使用 vue3 +vite4 开发，单文件组件，pinia持久化处理状态
+- 使用 vue3 +vite4 开发，单文件组件，pinia持久化处理状态(localStorage、indexedDB)
 - 使用 Windi CSS原子化构建样式
 - 集成本地 mock 接口调试
-- 函数式编程使用图片预览
+- 函数式编程使用图片预览、命令式弹窗组件封装
+- 创建webWorker版本轮询提示用户刷新监测
 - gzip压缩、cdn加速、图片压缩、dependencies下的依赖打包单独拆分
 - 集成 pnpm monorepo 思想、共用私有组件、私有工具函数
 - 使用 husky、lint-staged、commitlint、git-hooks 规范提交信息（提交预检测debugger、代码冲突、暂存区代码统一格式）
