@@ -90,6 +90,7 @@ onMounted(() => {
 .box-404 {
   background: #000;
   position: fixed;
+  z-index: 20;
   width: 100%;
   height: 100%;
   box-sizing: border-box;
