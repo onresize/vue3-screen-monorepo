@@ -1,5 +1,8 @@
 ## vue3-screen-template（大屏共用前端web模版）
 
+<a href="https://www.murphysec.com/console/report/1717762155859460096/1717762156283084800" alt="Security Status"><img src="https://www.murphysec.com/platform3/v31/badge/1717762156283084800.svg" /></a>
+
+
 ###  项目集成特点🔨
 
 - 使用 vue3 +vite4 开发，单文件组件，pinia持久化处理状态(localStorage、indexedDB)
