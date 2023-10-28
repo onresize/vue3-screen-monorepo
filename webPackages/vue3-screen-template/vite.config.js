@@ -4,7 +4,7 @@
  * @LastEditTime: 2023-10-12 21:29:33
  * @LastEditors: Embrance-T 2069814988@qq.com
  * @Description:
- * @FilePath: \vue3-screen-monorepo\webPackages\vue3-screen-template\vite.config.js
+ * @FilePath: \shangrao-school-vue\webPackages\ShangRaoSchoolVUE\vite.config.js
  * 可以输入预定的版权声明、个性签名、空行等
  */
 import { defineConfig, loadEnv } from 'vite'
@@ -217,6 +217,8 @@ export default defineConfig(({ mode }) => {
         eslintrc: {
           enabled: false,
         },
+        // dirs: [''], // 本地模块自动导入
+        dts: false, // 是否生成ts类型声明
         resolvers: [ElementPlusResolver()],
       }),
       /**

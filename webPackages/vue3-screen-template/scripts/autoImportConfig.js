@@ -11,5 +11,5 @@ export const config = {
   globalNamespaces: [],
   extensions: ['vue', 'js', 'jsx'],
   deep: true,
-  dts: false,
+  dts: false, // 是否生成ts类型声明
 }
