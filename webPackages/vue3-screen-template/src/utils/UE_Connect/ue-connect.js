@@ -1,6 +1,4 @@
 import { useMessageStore } from '@/stores'
-import websocket from './websocket'
-import XR from './xrframework'
 
 //处理回调消息
 export const CallBackMessage = async (cmdName, argString, callback) => {
