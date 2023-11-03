@@ -4,8 +4,8 @@ import { useSettingStore } from '@/stores'
 const store = useSettingStore()
 const Router = useRouter()
 const loginForm = ref({
-  username: 'dhxx',
-  password: '123456',
+  username: 'admin',
+  password: 'admin123',
   rememberMe: false,
 })
 const state = reactive({
@@ -13,15 +13,18 @@ const state = reactive({
 })
 
 const handleLogin = () => {
-  state.loading = true
-  store
-    .login_Async(loginForm.value)
-    .then(() => {
-      Router.push({ path: '/preLoading' })
-    })
-    .catch(() => {
-      state.loading = false
-    })
+  Router.push({ path: '/page1' })
+
+  // state.loading = true
+  // store
+  //   .login_Async(loginForm.value)
+  //   .then(async () => {
+  //     await Router.push({ path: '/page1' })
+  //     await store.getGlobalSelectList_Async()
+  //   })
+  //   .catch(() => {
+  //     state.loading = false
+  //   })
 }
 </script>
 

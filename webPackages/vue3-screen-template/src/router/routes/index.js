@@ -37,13 +37,8 @@ const routes = [
     path: '',
     name: 'pageContainer',
     component: Layout,
-    redirect: 'page1',
+    redirect: 'preLoading',
     children: [
-      // {
-      //   path: '/home',
-      //   name: 'home',
-      //   component: () => import('@/views/home.vue'),
-      // },
       {
         path: '/page1',
         name: 'page1',

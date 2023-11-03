@@ -48,11 +48,6 @@ export const $toolFunc = {
     let res = idCard.replace(idCard?.substring(start, end), val);
     return res;
   },
-  // 处理url获取
-  getImageUrl(name, folder) {
-    return new URL(`/src/assets/${folder}/${name}.png`, import.meta.url).href;
-    // return new URL("@/assets/charts/bar_y.png", import.meta.url).href;
-  },
   // 截取字符
   toSubstr(str, startNum = 0, endNum) {
     return str?.substring(startNum, endNum);
@@ -185,6 +180,101 @@ export const $toolFunc = {
     );
   },
 };
+
+// 判断单张图片是否有效
+export function checkImgExists(imgurl) {
+  return new Promise(function (resolve, reject) {
+    var ImgObj = new Image();
+    ImgObj.src = imgurl;
+    ImgObj.onload = function (res) {
+      resolve(res);
+    };
+    ImgObj.onerror = function (err) {
+      reject(err);
+    };
+  });
+}
+
+// 获取网站公网ip、或域名
+export function getWebUrlName(url) {
+  let domain = url.split("/"); //以“/”进行分割
+
+  if (domain[2]) {
+    domain = domain[2];
+  } else {
+    domain = ""; //如果url不正确就取空
+  }
+  return domain;
+}
+
+// 判断是域名、公网ip
+export function checkDomain(str) {
+  //验证是否是域名
+  let doname =
+    /^([\w-]+\.)+((com)|(net)|(org)|(gov\.cn)|(info)|(cc)|(com\.cn)|(net\.cn)|(org\.cn)|(name)|(biz)|(tv)|(cn)|(mobi)|(name)|(sh)|(ac)|   (io)|(tw)|(com\.tw)|(hk)|(com\.hk)|(ws)|(travel)|(us)|(tm)|(la)|(me\.uk)|(org\.uk)|(ltd\.uk)|(plc\.uk)|(in)|(eu)|(it)|(jp))$/;
+  let flag_domain = doname.test(str);
+  if (!flag_domain) {
+    //错误的域名
+    return false;
+  } else {
+    return true;
+  }
+}
+
+// 检查网站是否能正常加载
+export function checkSite(url) {
+  // 新建一个图片
+  let img = new Image();
+  // 设置图片的链接
+  if (checkDomain(url)) {
+    img.src = "https://" + url + "/favicon.ico";
+  } else {
+    img.src = "http://" + url + "/favicon.ico";
+  }
+  console.log("进入检查网址正常方法");
+
+  return new Promise((res, rej) => {
+    // 设定超时事件，延迟 3000 毫秒
+    var timeout = setTimeout(function () {
+      // 清除 onerror 和 onload 事件
+      img.onerror = img.onload = null;
+      console.log("time out.....");
+      res(false);
+    }, 1000);
+
+    // 设定错误事件
+    img.onerror = function () {
+      // 先清除超时事件
+      clearTimeout(timeout);
+      console.log("load error.....");
+      res(false);
+    };
+
+    // 设定可以加载的事件
+    img.onload = function () {
+      // 先清除超时事件
+      clearTimeout(timeout);
+      console.log("ok.....");
+      res(true);
+    };
+  });
+}
+
+/**
+ * 触发自定义事件
+ * @param action
+ * @param data
+ * @constructor
+ */
+export function AddDispatchEvent(action, data) {
+  // 创建自定义事件
+  var event = document.createEvent("HTMLEvents");
+  // 初始化testEvent事件
+  event.initEvent(action, false, true);
+  event.data = data;
+  // 触发自定义事件
+  window.dispatchEvent(event);
+}
 
 // 是否空对象
 export function isEmptyObj(obj) {

@@ -1,15 +1,29 @@
 <script setup>
 import { useMessageStore, useSettingStore } from '@/stores'
 import { $toolFunc } from '@/utils'
+import { getTimeState, onceFunc } from '@LT/utils'
 
 const messageStore = useMessageStore()
 const settingStore = useSettingStore()
+const { onlyRunOnce } = storeToRefs(messageStore)
+const { switchBtnObj } = storeToRefs(settingStore)
 
 const Router = useRouter()
 const { proxy } = getCurrentInstance()
 const { sleepFunc, usedLocalStorageHow } = $toolFunc
 
-const { switchBtnObj } = storeToRefs(settingStore)
+onceFunc(() => {
+  messageStore.changeOnlyRunOnce_Sync(true)
+  setTimeout(() => {
+    ElNotification({
+      title: getTimeState(),
+      message: '欢迎登录',
+      type: 'success',
+      duration: 3e3,
+      customClass: 'notification',
+    })
+  }, 1.5e3)
+})(onlyRunOnce.value)
 
 usedLocalStorageHow()
 
@@ -181,6 +195,11 @@ void (() => {
   </pageContainer>
 </template>
 
+<style lang="less">
+.notification {
+  width: 280px;
+}
+</style>
 <style scoped lang="less">
 @import url('@/styles/page1.less');
 </style>

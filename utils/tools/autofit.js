@@ -22,7 +22,7 @@ export const AutoFit = {
       return;
     }
     dom.style.transitionProperty = `all`;
-    dom.style.transitionTimingFunction = `cubic-bezier(0.4, 0, 0.2, 1)`;
+    // dom.style.transitionTimingFunction = `cubic-bezier(0.4, 0, 0.2, 1)`;
     dom.style.transitionDuration = `400ms`;
     dom.style.transformOrigin = `left top`;
     keepFit(dw, dh, dom);

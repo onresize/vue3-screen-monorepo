@@ -20,7 +20,7 @@ const router = createRouter({
 })
 
 // 免token白名单路由
-const whiteList = ['/login', '/register']
+const whiteList = ['/login', '/redirect', '/preLoading']
 
 router.beforeEach((to, from, next) => {
   console.log('全局路由钩子：', '\nto:', to, '\nfrom:', from)

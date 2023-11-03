@@ -85,16 +85,14 @@ export async function sendRequest(requestList, limits = 3, callback) {
 // sendRequest([request('xx'), request('xx')], 3, () => {})
 
 // fetch添加超时功能
-export function createFetchWidthTimeout(timeout = 1000) {
-  return function (url, opt) {
-    return new Promise((resolve, reject) => {
-      const singleController = new AbortController();
-      fetch(url, { ...opt, signal: singleController.signal }).then(resolve, reject);
-      setTimeout(() => {
-        reject(new Error("fetch error"));
-        // 取消请求
-        singleController.abort();
-      }, timeout);
-    });
-  };
+export function createFetchWidthTimeout(url, opt = {}, timeout = 10e3) {
+  return new Promise((resolve, reject) => {
+    const singleController = new AbortController();
+    fetch(url, { ...opt, signal: singleController.signal }).then(resolve, reject);
+    setTimeout(() => {
+      reject(new Error("fetch error"));
+      // 取消请求
+      singleController.abort();
+    }, timeout);
+  });
 }

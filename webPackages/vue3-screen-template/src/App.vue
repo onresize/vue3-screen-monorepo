@@ -17,9 +17,10 @@ watchResize(() => {
 
 <template>
   <!-- <router-view :key="key" class="app_box" /> -->
-  <router-view :class="commonStyles" :key="key" v-slot="{ Component }">
-    <keep-alive include="">
-      <component :is="Component"></component>
+
+  <router-view :class="commonStyles" v-slot="{ Component }">
+    <keep-alive include="['login', 'preLoading']">
+      <component :is="Component" :key="key"></component>
     </keep-alive>
   </router-view>
 </template>
