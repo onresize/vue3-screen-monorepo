@@ -56,6 +56,7 @@ export default defineConfig(({ mode }) => {
     },
 
     build: {
+      chunkSizeWarningLimit: 1500, // 单个模块上限调整为1500kb
       minify: 'terser', // terser比esbuild（默认）慢20倍左右、可清除console、debugger
       // 清除console等多余代码
       terserOptions: {
