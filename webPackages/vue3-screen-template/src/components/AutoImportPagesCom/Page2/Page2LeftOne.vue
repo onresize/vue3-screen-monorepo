@@ -72,7 +72,7 @@ setTimeout(() => {
       id: index,
       name: '张三' + index,
       sub: '语文',
-      pic: 'https://p1.music.126.net/XVg-o_520Fds9Ut60-O8SA==/109951168608721637.jpg?param=30y30',
+      pic: '',
       author: '小崔',
     })
   }

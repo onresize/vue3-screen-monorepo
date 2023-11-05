@@ -1,20 +1,15 @@
-import localforage from 'localforage'
+import localForage from 'localforage'
+// 文档：https://localforage.docschina.org/
 
 export const useIndexedDBStore = defineStore('indexedDB', {
   state: () => ({
-    filesDB: localforage.createInstance({
-      name: 'filesDB',
-    }),
-    usersDB: localforage.createInstance({
-      name: 'usersDB',
-    }),
-    responseDB: localforage.createInstance({
+    responseDB: localForage.createInstance({
       name: 'responseDB',
     }),
   }),
   actions: {
-    async setFilesDB(key, value) {
-      this.filesDB.setItem(key, value)
+    async setResponseDB(key, value) {
+      this.responseDB.setItem(key, value)
     },
   },
 })
@@ -22,5 +17,4 @@ export const useIndexedDBStore = defineStore('indexedDB', {
 // XXX使用
 // import { useIndexedDBStore } from '@/stores/indexedDBStore'
 // const indexedDBStore = useIndexedDBStore()
-// const file1 = {a: 'hello'}
-// indexedDBStore.setfilesDB('file1', file1
+// indexedDBStore.setResponseDB('file1', {a: 'hello'})
