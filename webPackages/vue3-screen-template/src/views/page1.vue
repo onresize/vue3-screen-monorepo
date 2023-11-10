@@ -1,7 +1,6 @@
 <script setup>
 import { useMessageStore, useSettingStore } from '@/stores'
-import { $toolFunc } from '@/utils'
-import { getTimeState, onceFunc } from '@LT/utils'
+import { $toolFunc, getTimeState, onceFunc } from '@/utils'
 
 const messageStore = useMessageStore()
 const settingStore = useSettingStore()

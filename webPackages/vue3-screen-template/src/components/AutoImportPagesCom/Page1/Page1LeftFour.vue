@@ -1,5 +1,5 @@
 <script setup>
-import { isEmptyObj } from '@LT/utils'
+import { isEmptyObj } from '@/utils'
 import { LoadingOutTime } from '@/constants'
 
 const props = defineProps({

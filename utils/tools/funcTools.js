@@ -2,6 +2,14 @@ export const $toolFunc = {
   sleepFunc(delay = 200) {
     return new Promise((res) => setTimeout(res, delay));
   },
+  sleepProFunc(func, delay = 200) {
+    return new Promise((res) =>
+      setTimeout(() => {
+        func();
+        res();
+      }, delay)
+    );
+  },
   awaitPromise(resData) {
     return new Promise((res) => {
       setTimeout(() => {
@@ -55,7 +63,7 @@ export const $toolFunc = {
   // 超出对应长度字段用...代替
   substrSting(str, num) {
     if (str) {
-      let strVal = str.substring(0, num) + (str?.length > num ? "..." : "");
+      let strVal = str.substring(0, num) + (str?.length > num ? ".." : "");
       return strVal;
     }
   },
@@ -141,22 +149,28 @@ export const $toolFunc = {
     var isFullScreen = document.fullscreen || document.mozFullScreen || document.webkitIsFullScreen;
     return isFullScreen == undefined ? false : isFullScreen;
   },
+  // 根据场景改造shift方法、每次提出定义长度的数组项
+  shiftPro(arr, num = 10) {
+    let PArr = [];
+    for (let i = num; i--; ) {
+      PArr.push(arr.shift());
+    }
+    let filterArr = PArr.filter(Boolean);
+    console.log(filterArr);
+    return filterArr;
+  },
   // 分时函数 (要分时渲染的数组, 回调, 每次分时渲染的片长度)
-  timerChunk(sourceArr, callback, chunk = 1) {
-    let ret,
-      timer = null,
-      count = 0;
-    const renderData = () => {
-      for (let i = 0; i < Math.min(chunk, sourceArr.length); i++) {
-        // 取出数据
-        ret = sourceArr.shift();
+  timerChunk(sourceArr, callback, chunk = 1, wait = 0) {
+    let ret;
+    const renderData = async () => {
+      let forCount = Math.ceil(sourceArr.length / chunk);
+      for (let i = 1; i <= forCount; i++) {
+        // ret = sourceArr.shift(); // 提出1条
+        // 取出数据、特别大的数据可以使用shiftPro进一步优化速度
+        console.log(`分批执行第${i}次👇`);
+        ret = $toolFunc.shiftPro(sourceArr, chunk); // 提出(chunk: 100)条
+        await $toolFunc.sleepFunc(wait);
         callback(ret);
-
-        if (i == Math.min(chunk, sourceArr.length) - 1) {
-          console.log(`分批执行第${++count}次`);
-          if (sourceArr.length === 0) return;
-          renderData();
-        }
       }
     };
     return () => renderData();
@@ -310,6 +324,54 @@ export function generateUUID() {
     uuid += (i === 12 ? 4 : i === 16 ? (random & 3) | 8 : random).toString(16);
   }
   return uuid;
+}
+
+// 树递归筛入指定字段数据
+export function treeListCallee(list = [], key = "value") {
+  list.forEach((row) => {
+    row[key] = generateUUID();
+    if (row?.children?.length) {
+      treeListCallee(row?.children);
+    }
+  });
+}
+
+// 中文数字一到十、转成阿拉伯数字1-10
+export function convertChineseToNumber(str) {
+  const map = {
+    一: 1,
+    壹: 1,
+    二: 2,
+    贰: 2,
+    两: 2,
+    三: 3,
+    叁: 3,
+    四: 4,
+    肆: 4,
+    五: 5,
+    伍: 5,
+    六: 6,
+    陆: 6,
+    七: 7,
+    柒: 7,
+    八: 8,
+    捌: 8,
+    九: 9,
+    玖: 9,
+    十: 10,
+    拾: 10,
+  };
+  let result = "";
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charAt(i);
+    const value = map[char];
+    if (value !== undefined) {
+      result += value;
+    } else {
+      result += char;
+    }
+  }
+  return result;
 }
 
 // 生成随机数

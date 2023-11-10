@@ -3,7 +3,7 @@ import App from '@/App.vue'
 import router from '@/router'
 
 // 引入全局适配函数
-import { AutoFit } from '@LT/utils'
+import { AutoFit } from '@/utils'
 
 // 初始化连接socket
 import { WebSocketUtil } from '@/utils/UE_Connect/ue-connect'
@@ -73,4 +73,5 @@ void (() => {
 
 app.use(directives, app).mount('#app')
 
-window.vueVm = app
+window.$vueVm = app
+window.$utils = XEUtils

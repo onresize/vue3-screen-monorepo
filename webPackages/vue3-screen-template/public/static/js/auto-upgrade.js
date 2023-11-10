@@ -8,8 +8,9 @@
   t.parentNode.appendChild(s, t)
   s.onload = function () {
     VersionPolling.createVersionPolling({
-      appETagKey: '__APP_ETAG_ZHXY__',
+      appETagKey: '__APP_ETAG__',
       pollingInterval: 5 * 1000,
+      silent: globalThis?.location?.port == '3080', // 3080端口下不检测
       onUpdate: (self) => {
         const result = confirm('页面有更新，点击确定刷新页面！')
         if (result) {

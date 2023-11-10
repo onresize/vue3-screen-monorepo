@@ -1,6 +1,6 @@
 <script setup name="Header">
 import { useMessageStore } from '@/stores'
-import { getCurrentTime } from '@LT/utils'
+import { getCurrentTime } from '@/utils'
 import { dayjs } from 'element-plus'
 
 const { proxy } = getCurrentInstance()

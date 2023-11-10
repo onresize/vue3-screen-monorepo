@@ -1,4 +1,4 @@
-import { Debounce, Throttle } from '@LT/utils'
+import { Debounce, Throttle } from '@/utils'
 import auth from './plugin/auth'
 import cache from './plugin/cache'
 import errorHandler from './plugin/errorHandler'
