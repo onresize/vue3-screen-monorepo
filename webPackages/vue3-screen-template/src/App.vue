@@ -19,9 +19,11 @@ watchResize(() => {
   <!-- <router-view :key="key" class="app_box" /> -->
 
   <router-view :class="commonStyles" v-slot="{ Component }">
-    <keep-alive include="['login', 'preLoading']">
-      <component :is="Component" :key="key"></component>
-    </keep-alive>
+    <transition name="fade-transform" mode="out-in">
+      <keep-alive :include="['login', 'redirect', 'preLoading']">
+        <component :is="Component" :key="key"></component>
+      </keep-alive>
+    </transition>
   </router-view>
 </template>
 
