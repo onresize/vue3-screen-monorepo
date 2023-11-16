@@ -195,6 +195,15 @@ export const $toolFunc = {
   },
 };
 
+// 预加载图片
+export function preloadImg(arg) {
+  let images = new Array();
+  for (let i = 0; i < arg.length; i++) {
+    images[i] = new Image();
+    images[i].src = arg[i];
+  }
+}
+
 // 判断单张图片是否有效
 export function checkImgExists(imgurl) {
   return new Promise(function (resolve, reject) {
@@ -336,6 +345,13 @@ export function treeListCallee(list = [], key = "value") {
   });
 }
 
+// 小数转百分比
+export function toPercent(point) {
+  var percent = Number((point - 0) * 100).toFixed(0);
+  percent += "%";
+  return percent;
+}
+
 // 中文数字一到十、转成阿拉伯数字1-10
 export function convertChineseToNumber(str) {
   const map = {
@@ -362,8 +378,8 @@ export function convertChineseToNumber(str) {
     拾: 10,
   };
   let result = "";
-  for (let i = 0; i < str.length; i++) {
-    const char = str.charAt(i);
+  for (let i = 0; i < str?.length; i++) {
+    const char = str?.charAt(i);
     const value = map[char];
     if (value !== undefined) {
       result += value;
