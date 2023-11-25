@@ -6,7 +6,7 @@ const showFlowDialog = (clickHandler) => {
   // 渲染弹窗组件
   const app = createApp(dialogCom, {
     onClick() {
-      clickHandler &
+      clickHandler &&
         clickHandler(() => {
           app.unmount(divEl)
           divEl.remove()
