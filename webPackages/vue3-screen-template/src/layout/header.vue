@@ -6,7 +6,7 @@ import { dayjs } from 'element-plus'
 const { proxy } = getCurrentInstance()
 const Router = useRouter()
 const store = useMessageStore()
-const { setupState } = storeToRefs(store)
+const { num, pm, setupState } = storeToRefs(store)
 
 const state = reactive({
   showAnimation: false,
@@ -14,22 +14,22 @@ const state = reactive({
 
 const year_month_day = computed(() => dayjs().format('YYYY年MM月DD日'))
 
-void (() => {
-  let tim = setInterval(() => {
-    getCurrentTime()
-      .then((time) => {
-        store.changeTimer_Sync(time)
-      })
-      .catch((error) => {
-        console.error('获取时间Error:', error)
-      })
-  }, 1e3)
+// void (() => {
+//   let tim = setInterval(() => {
+//     getCurrentTime()
+//       .then((time) => {
+//         store.changeTimer_Sync(time)
+//       })
+//       .catch((error) => {
+//         console.error('获取时间Error:', error)
+//       })
+//   }, 1e3)
 
-  return () => {
-    console.log('销毁时间定时器')
-    clearTimeout(tim)
-  }
-})()
+//   return () => {
+//     console.log('销毁时间定时器')
+//     clearTimeout(tim)
+//   }
+// })()
 
 onMounted(() => {
   setTimeout(() => {
@@ -45,6 +45,7 @@ const BtnClick = (num) => {
 
 const setupClick = () => {
   store.changeSetupState_Sync()
+  store.changeNum_Sync()
 }
 </script>
 
@@ -76,8 +77,8 @@ const setupClick = () => {
           <div class="xian"></div>
 
           <div class="pm2">
-            <div class="pm2_t">60</div>
-            <div class="pm2_b">PM2.5</div>
+            <div class="pm2_t">{{ num }}</div>
+            <div class="pm2_b">{{ pm }}</div>
           </div>
           <div class="xian"></div>
 

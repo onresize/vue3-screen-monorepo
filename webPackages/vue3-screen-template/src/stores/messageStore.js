@@ -2,6 +2,7 @@ export const useMessageStore = defineStore('message', {
   state: () => ({
     onlyRunOnce: false,
     num: 0,
+    pm: '100',
     iconList: [], // 所有svg图片
     headerBtnActive: 1, // 头部按钮高亮
     timer: '00:00:00',
@@ -12,7 +13,7 @@ export const useMessageStore = defineStore('message', {
     },
   }),
   getters: {
-    getters_headerBtnActive: (state) => state.headerBtnActive,
+    getters_headerBtnActive: (state) => state.headerBtnActive, // 这种写法不建议、可以直接调用没必要这样写
     getters_timer: (state) => state.timer,
   },
   actions: {
@@ -21,6 +22,7 @@ export const useMessageStore = defineStore('message', {
     },
     changeNum_Sync(res) {
       this.num++
+      this.pm--
     },
     changeSvgList_Sync(list) {
       this.iconList = list
@@ -39,9 +41,10 @@ export const useMessageStore = defineStore('message', {
       this.messageWebSocket[key] = data
     },
   },
+  // persist: true,
   persist: {
     enabled: true, // 开启持久化
-    paths: ['onlyRunOnce', 'num', 'headerBtnActive', 'timer', 'setupState'], // 需要持久化的数据
+    paths: ['num'], // 需要持久化的数据
     storage: globalThis.localStorage, // 持久化保存在localStorage
   },
 })

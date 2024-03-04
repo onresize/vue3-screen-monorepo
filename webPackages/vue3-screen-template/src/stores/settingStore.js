@@ -158,13 +158,7 @@ export const useSettingStore = defineStore('setting', {
   },
   persist: {
     enabled: true, // 开启持久化
-    paths: [
-      'yearNumber',
-      'globalSelectVal',
-      'subBtnActive',
-      'sxtBoxList',
-      'winBtnList',
-    ], // 需要持久化的数据
+    paths: ['yearNumber'], // 需要持久化的数据
     storage: globalThis.localStorage, // 持久化保存在localStorage
   },
 })

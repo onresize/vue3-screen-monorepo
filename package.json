@@ -49,5 +49,8 @@
   "engines": {
     "node": ">= 16.x.x",
     "pnpm": "8.x"
+  },
+  "dependencies": {
+    "pako": "^2.1.0"
   }
 }

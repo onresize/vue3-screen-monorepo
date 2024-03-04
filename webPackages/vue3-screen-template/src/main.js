@@ -51,7 +51,7 @@ void (() => {
   )
 })()
 
-WebSocketUtil()
+// WebSocketUtil()
 
 app.component('svg-icon', SvgIcon)
 
