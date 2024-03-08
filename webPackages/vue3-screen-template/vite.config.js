@@ -44,6 +44,8 @@ export default defineConfig(({ mode }) => {
   return {
     envDir, // 管理环境变量的配置文件存放目录
     base: env.VITE_DEPLOY_BASE_URL,
+    // publicDir: resolve('./dist'),
+    // assetsInclude: resolve('src/assets'),
     server: {
       port: 3080,
       proxy: {
@@ -75,12 +77,15 @@ export default defineConfig(({ mode }) => {
            *  2. 导入本文件 `import md5 from '@withtypes/md5'`
            *  3. 将函数里的 `${name}` 修改为 `${md5(name)}`
            */
-          // chunkFileNames: ({ name }) => {
-          //   return `assets/${name}-[hash].js`
-          // },
+          // 入口文件名
           // entryFileNames: ({ name }) => {
           //   return `assets/${name}-[hash].js`
           // },
+          // // 块文件名
+          // chunkFileNames: ({ name }) => {
+          //   return `assets/${name}-[hash].js`
+          // },
+          // // 资源文件名css、图片
           // assetFileNames: ({ name }) => {
           //   return `assets/${name}-[hash].[ext]`
           // },
