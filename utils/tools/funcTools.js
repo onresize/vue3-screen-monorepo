@@ -289,6 +289,7 @@ export function checkSite(url) {
  * @param data
  * @constructor
  */
+// JS自定义事件： https://blog.csdn.net/qq_41536505/article/details/130371373
 export function AddDispatchEvent(action, data) {
   // 创建自定义事件
   var event = document.createEvent("HTMLEvents");
